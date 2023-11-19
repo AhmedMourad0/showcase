@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <plural name="in_d_days">
+        <item quantity="one">In a day</item>
+        <item quantity="other">In %d days</item>
+    </plural>
+    <plural name="in_d_hours">
+        <item quantity="one">In an hour</item>
+        <item quantity="other">In %d hours</item>
+    </plural>
+    <plural name="in_d_months">
+        <item quantity="one">In a month</item>
+        <item quantity="other">In %d months</item>
+    </plural>
+    <plural name="in_d_years">
+        <item quantity="one">In a year</item>
+        <item quantity="other">In %d years</item>
+    </plural>
+    <plural name="you_have_d_tasks">
+        <item quantity="one">You have one remaining task</item>
+        <item quantity="other">You have %d remaining tasks</item>
+    </plural>
+    <plural name="d_mins">
+        <item quantity="one">%d min</item>
+        <item quantity="other">%d mins</item>
+    </plural>
+    <plural name="d_years">
+        <item quantity="one">%d year</item>
+        <item quantity="other">%d years</item>
+    </plural>
+    <plural name="d_months">
+        <item quantity="one">%d month</item>
+        <item quantity="other">%d months</item>
+    </plural>
+    <plural name="d_days">
+        <item quantity="one">%d day</item>
+        <item quantity="other">%d days</item>
+    </plural>
+    <plural name="d_hours">
+        <item quantity="one">%d hour</item>
+        <item quantity="other">%d hours</item>
+    </plural>
+    <plural name="d_minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plural>
+    <plural name="d_ongoing_alerts">
+        <item quantity="one">%d ongoing alert</item>
+        <item quantity="other">%d ongoing alerts</item>
+    </plural>
+</resources>

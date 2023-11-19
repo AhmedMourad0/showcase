@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ahmed Mourad</string>
+    <string name="immediately">على الفور</string>
+    <string name="tomorrow">غدًا</string>
+    <string name="next_month">الشهر المقبل</string>
+    <string name="next_year">العام المقبل</string>
+    <string name="at_s">في %s</string>
+    <string name="custom">مخصص</string>
+    <string name="starts_s">يبدأ في %s</string>
+    <string name="january">يناير</string>
+    <string name="february">فبراير</string>
+    <string name="march">مارس</string>
+    <string name="april">أبريل</string>
+    <string name="may">مايو</string>
+    <string name="june">يونيو</string>
+    <string name="july">يوليو</string>
+    <string name="august">أغسطس</string>
+    <string name="september">سبتمبر</string>
+    <string name="october">أكتوبر</string>
+    <string name="november">نوفمبر</string>
+    <string name="december">ديسمبر</string>
+    <string name="january_short">يناير</string>
+    <string name="february_short">فبراير</string>
+    <string name="march_short">مارس</string>
+    <string name="april_short">أبريل</string>
+    <string name="may_short">مايو</string>
+    <string name="june_short">يونيو</string>
+    <string name="july_short">يوليو</string>
+    <string name="august_short">أغسطس</string>
+    <string name="september_short">سبتمبر</string>
+    <string name="october_short">أكتوبر</string>
+    <string name="november_short">نوفمبر</string>
+    <string name="december_short">ديسمبر</string>
+    <string name="saturday">السبت</string>
+    <string name="sunday">الأحد</string>
+    <string name="monday">الاثنين</string>
+    <string name="tuesday">الثلاثاء</string>
+    <string name="wednesday">الأربعاء</string>
+    <string name="thursday">الخميس</string>
+    <string name="friday">الجمعة</string>
+    <string name="saturday_short">السبت</string>
+    <string name="sunday_short">الأحد</string>
+    <string name="monday_short">الاثنين</string>
+    <string name="tuesday_short">الثلاثاء</string>
+    <string name="wednesday_short">الأربعاء</string>
+    <string name="thursday_short">الخميس</string>
+    <string name="friday_short">الجمعة</string>
+    <string name="today">اليوم</string>
+    <string name="this_month">هذا الشهر</string>
+    <string name="this_year">هذا العام</string>
+    <string name="schedule_viewer">جدول المواعيد</string>
+    <string name="create_alarm">إنشاء منبه</string>
+    <string name="edit_alarm">تعديل المنبه</string>
+    <string name="update_alarm">تحديث المنبه</string>
+    <string name="timeline">الجدول الزمني</string>
+    <string name="you_have_no_remaining_tasks">لا يوجد لديك مهام متبقية</string>
+    <string name="something_went_wrong">حدث خطأ ما</string>
+    <string name="attention">إنتباه!</string>
+    <string name="ringtones">نغمات الرنين</string>
+    <string name="alarms">المنبهات</string>
+    <string name="choose_a_file">اختر ملفًا</string>
+    <string name="default_ringtone">النغمة الافتراضية</string>
+    <string name="snooze">غفوة</string>
+    <string name="hold_to_dismiss">اضغط بإستمرار للإنهاء</string>
+    <string name="dismiss">إنهاء</string>
+    <string name="delay">نوع التأجيل</string>
+    <string name="repeat_until">يتكرر حتى</string>
+    <string name="alarm_name">إسم المنبه</string>
+    <string name="ringtone">نغمة الرنين</string>
+    <string name="no_triggers">منبه غير نشط</string>
+    <string name="all_triggers_for_alarm_expired">انتهت جميع فترات تنبيه هذا المنبه</string>
+    <string name="create_anyway">تابع الإنشاء</string>
+    <string name="update_anyway">تابع التحديث</string>
+    <string name="repetition_pattern">نمط التكرار</string>
+    <string name="fires_at">ينشط في</string>
+    <string name="add_alarm_trigger">إضافة موعد تنبيه</string>
+    <string name="days_of_week">أيام الأسبوع</string>
+    <string name="days_of_month">أيام الشهر</string>
+    <string name="days_of_year">أيام السنة</string>
+    <string name="fires_every">ينشط كل</string>
+    <string name="years">سنوات</string>
+    <string name="months">شهور</string>
+    <string name="weeks">أسابيع</string>
+    <string name="days">أيام</string>
+    <string name="hours">ساعات</string>
+    <string name="minutes">دقائق</string>
+    <string name="times_of_day">أوقات اليوم</string>
+    <string name="add_time_of_day">إضافة وقت من اليوم</string>
+    <string name="triggers_in_s">ينشط خلال %s</string>
+    <string name="inactive_alarm_created_successfully">تم إنشاء المنبه الغير نشط بنجاح</string>
+    <string name="inactive_alarm_updated_successfully">تم تحديث المنبه الغير نشط بنجاح</string>
+    <string name="looking_for_alarms">جار البحث عن المنبهات</string>
+    <string name="could_not_find_any_alarms">لم يتم العثور على أي منبهات</string>
+    <string name="alarm">المنبه</string>
+    <string name="skip_for_the_month">تخطي لذلك الشهر</string>
+    <string name="last_day_of_month">آخر يوم من الشهر</string>
+    <string name="first_day_of_next_month">أول يوم من الشهر التالي</string>
+    <string name="for_months_shorter_than_d_days">للأشهر التي تقل عن %d يومًا</string>
+    <string name="select_days_of_month">اختر أيام الشهر</string>
+    <string name="of_every_month">من كل شهر</string>
+    <string name="select_days_of_week">اختر أيام الأسبوع</string>
+    <string name="s_and_s">%s و %s</string>
+    <string name="comma_s">\u0020و %s</string>
+    <string name="every_day">كل يوم</string>
+    <string name="s_to_s">%s إلى %s</string>
+    <string name="skip_for_the_year">تخطي لذلك العام</string>
+    <string name="last_day_of_february">آخر يوم من فبراير</string>
+    <string name="first_day_of_march">أول يوم من مارس</string>
+    <string name="for_non_leap_years">للسنوات غير الكبيسة</string>
+    <string name="of_every_year">من كل عام</string>
+    <string name="select_days_of_year">اختر أيام العام</string>
+    <string name="of_s">من %s</string>
+    <string name="cancel">تراجع</string>
+    <string name="indefinitely">إلى الأبد</string>
+    <string name="ends_at">ينتهي في</string>
+    <string name="no_delay">بدون تأجيل</string>
+    <string name="starts_at">يبدأ في</string>
+    <string name="must_contain">يجب أن يحتوي على</string>
+    <string name="must_not_contain">يجب ألا يحتوي على</string>
+    <string name="illegal_names">الأسماء غير المسموحة</string>
+    <string name="intersects_with">يتداخل مع</string>
+    <string name="select">اختيار</string>
+    <string name="d_st">%d</string>
+    <string name="d_nd">%d</string>
+    <string name="d_rd">%d</string>
+    <string name="d_th">%d</string>
+    <string name="comma_and_s">\u0020و %s</string>
+    <string name="am">ص</string>
+    <string name="pm">م</string>
+    <string name="looking_for_tasks">جار البحث عن المهام</string>
+    <string name="found_no_scheduled_tasks">لم يتم العثور على أي مهام</string>
+    <string name="once">مرة واحدة</string>
+    <string name="none">بدون</string>
+    <string name="weekly">أسبوعيًا</string>
+    <string name="monthly">شهريًا</string>
+    <string name="yearly">سنويًا</string>
+    <string name="periodic">دوريًا</string>
+    <string name="snoozed_until_s">غفوة حتى %s</string>
+    <string name="missed_trigger_at_s">فاتك التنبيه في %s</string>
+    <string name="delete_alarm">حذف المنبه؟</string>
+    <string name="delete_this_alarm">حذف هذا المنبه؟</string>
+    <string name="delete">حذف</string>
+    <string name="discard_changes">تجاهل التغييرات؟</string>
+    <string name="discard_changes_made_to_this_alarm">تجاهل التغييرات المُجراة على هذا المنبه؟</string>
+    <string name="update">تحديث</string>
+    <string name="discard">تجاهل</string>
+    <string name="delete_alarms">حذف المنبهات؟</string>
+    <string name="delete_selected_alarms">حذف المنبهات المحددة؟</string>
+    <string name="grant_permissions">منح الصلاحيات</string>
+    <string name="open_app_settings">فتح إعدادات التطبيق</string>
+    <string name="permissions_required">الصلاحيات المطلوبة</string>
+    <string name="my_schedule">جدول مواعيدي</string>
+    <string name="select_ringtone">اختر نغمة الرنين</string>
+    <string name="looking_for_ringtones">جار البحث عن نغمات الرنين</string>
+    <string name="could_not_find_any_ringtones">لم يتم العثور على أي نغمات رنين</string>
+    <string name="click_to_show">اضغط لإظهار المنبه</string>
+    <string name="in_a_few_seconds">في بضع ثوان</string>
+    <string name="no_notes">بلا ملاحظات</string>
+    <string name="notes">ملاحظات</string>
+    <string name="am">ص</string>
+    <string name="pm">م</string>
+    <string name="starts">يبدأ</string>
+    <string name="repeats">يتكرر</string>
+    <string name="until_date">حتى تاريخ</string>
+    <string name="at_date">في تاريخ</string>
+    <string name="never_miss_an_alarm">لا تفوت أي منبه</string>
+    <string name="missed_alarms">فاتك المنبه؟</string>
+    <string name="auto_start_prompt_desc">للحرص ألا يفوتك أي منبه، عليك أن:\n- تسمح للتطبيق بالتشغيل التلقائي وأن تضيفه للقائمة البيضاء في عمليات توفير الطاقة.\n- عند إستخدام وضع التوفير الفائق للطاقة، قم بإضافة التطبيق لقائمة التطبيقات الجارية.</string>
+    <string name="read_phone_state_permission_desc">نرغب في أن تكون مكالماتك نجم العرض! إذا حاول أي منبه مزعج أن يقاطع المكالمات الخاصة بك، سنسكته على الفور. ولكي نفعل ذلك، نحتاج إلى إذنك لقراءة حالة الهاتف 🐱</string>
+    <string name="storage_permission_desc">إنه منبهك، وأسلوبك! 🎨 من خلال السماح لنا بالوصول إلى مخزن ملفاتك، سنكتشف عالمك الفريد من نغمات التنبيه 🎧</string>
+    <string name="media_permission_desc">إنه منبهك، وأسلوبك! 🎨 من خلال السماح لنا بالوصول إلى مخزن نغماتك، سنكتشف عالمك الفريد من نغمات التنبيه 🎧</string>
+    <string name="system_alert_window_permission_desc">إشعارات متسللة! 👀 من خلال تمكين إذن نافذة الإشعارات النظامية، سنقدم لك التذكيرات حتى عند استخدامك لتطبيقات أخرى 📩</string>
+    <string name="schedule_exact_alarm_permission_desc">من خلال منح إذن الجدولة الدقيقة للإنذار، سننطلق في رحلة نحو الالتزام بالوقت بدقة. قل وداعًا لفوات المواعيد واستقبل عالمًا من المواعيد الدقيقة! ⏱️</string>
+    <string name="notifications_permission_desc">نريد التأكد من أن منبهاتك لا تفوتها لحظة! مع قوة الإشعارات، يمكننا إعادة تسليط الضوء على تلك المنبهات المؤجلة أو المفقودة! 🎵</string>
+    <string name="home">الرئيسية</string>
+    <string name="create">إنشاء</string>
+    <string name="edit">تعديل</string>
+</resources>
