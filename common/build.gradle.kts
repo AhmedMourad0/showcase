@@ -7,7 +7,6 @@ plugins {
     id("kotlin-parcelize")
     id("org.jetbrains.compose")
     id("dev.icerock.mobile.multiplatform-resources")
-    id("com.google.devtools.ksp") version "1.9.10-1.0.13"
     id("co.touchlab.skie") version "0.4.20"
 }
 
@@ -57,26 +56,20 @@ kotlin {
         val androidMain by getting {
             dependsOn(commonMain)
             dependencies {
-                api("androidx.compose.material3:material3:1.2.0-alpha05") {
-                    exclude(group = "androidx.compose.foundation", module = "foundation")
-                }
-                api("androidx.compose.material3:material3-window-size-class:1.2.0-alpha05")  {
-                    exclude(group = "androidx.compose.foundation", module = "foundation")
-                }
+                api("androidx.compose.material3:material3:1.2.0-alpha05")
+                api("androidx.compose.material3:material3-window-size-class:1.2.0-alpha05")
                 api("androidx.activity:activity-compose:1.7.2")
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.10.1")
                 api("androidx.startup:startup-runtime:1.1.1")
                 api("androidx.lifecycle:lifecycle-viewmodel-compose:2.6.1")
                 api("com.google.android.material:material:1.9.0")
-                api("io.github.raamcosta.compose-destinations:core:1.9.53")
                 api("com.google.accompanist:accompanist-systemuicontroller:0.31.4-beta")
                 api("com.google.accompanist:accompanist-pager-indicators:0.31.5-beta")
                 api("androidx.compose.ui:ui-tooling-preview:1.4.3")
-                api("androidx.media:media:1.6.0")
-                api("androidx.work:work-runtime-ktx:2.8.1")
                 api("androidx.datastore:datastore-preferences:1.0.0")
                 api("androidx.core:core-splashscreen:1.0.1")
+                api("androidx.compose.runtime:runtime-tracing:1.0.0-alpha03")
             }
         }
         val androidUnitTest by getting {
@@ -122,11 +115,6 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
-}
-
-dependencies {
-    add("kspAndroid", "io.github.raamcosta.compose-destinations:ksp:1.9.53")
-    implementation("androidx.compose.foundation:foundation-android:1.5.0")
 }
 
 multiplatformResources {

@@ -12,10 +12,11 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.*
-import androidx.compose.material3.Button
 import androidx.compose.material3.FloatingActionButton
-import androidx.compose.material3.Text
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.clipToBounds
@@ -24,10 +25,13 @@ import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.zIndex
 import dev.ahmedmourad.showcase.common.canvas.focus.FocusManager
 import dev.ahmedmourad.showcase.common.canvas.models.*
@@ -37,7 +41,9 @@ import dev.ahmedmourad.showcase.common.canvas.utils.findQuickActionsLayoutInfo
 import dev.ahmedmourad.showcase.common.canvas.utils.rotateBy
 import dev.ahmedmourad.showcase.common.canvas.utils.times
 import dev.ahmedmourad.showcase.common.canvas.utils.toRect
+import dev.ahmedmourad.showcase.common.compose.Showcase
 import dev.ahmedmourad.showcase.common.compose.launchBlocker
+import dev.ahmedmourad.showcase.common.compose.modifiers.boundedAspectRatio
 import dev.ahmedmourad.showcase.common.pickers.toPx
 
 const val CANVAS_WIDTH_RATIO = 2f
@@ -45,104 +51,54 @@ const val CANVAS_HEIGHT_RATIO = 3f
 const val CANVAS_ASPECT_RATIO = CANVAS_WIDTH_RATIO / CANVAS_HEIGHT_RATIO
 
 //TODO: the blocking
-@Composable
-fun CanvasUI(
-    items: () -> List<CanvasItem>,
-    onItemsChange: (List<CanvasItem>) -> Unit,
-    undoManager: UndoManager,
-    focusManager: FocusManager,
-    modifier: Modifier = Modifier
-) {
-    Column(modifier.fillMaxSize()) {
-        Canvas(
-            items = { items() },
-            onItemsChange = onItemsChange,
-            undoManager = undoManager,
-            focusManager = focusManager,
-            modifier = Modifier.weight(1f)
-        )
-        Row {
-            val scope = rememberCoroutineScope()
-            Button(onClick = {
-                scope.launchBlocker {
-                    onItemsChange(undoManager.undo(items()))
-                }
-            }) {
-                Text("Undo")
-            }
-            Spacer(Modifier.width(16.dp))
-            Button(onClick = {
-                scope.launchBlocker {
-                    onItemsChange(undoManager.redo(items()))
-                }
-            }) {
-                Text("Redo")
-            }
-        }
-    }
-}
-
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun Canvas(
-    items: () -> List<CanvasItem>,
-    onItemsChange: (List<CanvasItem>) -> Unit,
-    undoManager: UndoManager,
-    focusManager: FocusManager,
+fun CanvasUI(
+    state: CanvasState,
     modifier: Modifier = Modifier
 ) {
-    Column(modifier.fillMaxSize().background(Color.Black)) {
-        val focusedItem = remember(focusManager.focus, items()) {
-            items().firstOrNull { it.canvasId == focusManager.focus?.canvasId }
-        }
-        var canvasSize by remember { mutableStateOf(Size(0f, 0f)) }
-        BoxWithConstraints(Modifier
-            .fillMaxWidth()
-            .aspectRatio(CANVAS_ASPECT_RATIO)
-            .clip(RoundedCornerShape(16.dp))
-            .background(Color.White)
-            .transformable(state = rememberTransformableItemState(
-                item = focusedItem,
-                focusManager = focusManager
-            ), canPan = { false }, enabled = focusManager.focus != null)
-            .itemGesturesEndDetector(
-                item = focusedItem,
-                focusManager = focusManager,
-                undoManager = undoManager
-            ).itemSelector(
-                items = items,
-                focusManager = focusManager,
-                undoManager = undoManager
-            ).clipToBounds()
-        ) {
-            LaunchedEffect(constraints) {
-                canvasSize = Size(constraints.maxWidth.toFloat(), constraints.maxHeight.toFloat())
-            }
-            items().forEach { item ->
-                key(item.canvasId) {
-                    CanvasItem(
-                        item = item,
-                        undoManager = undoManager,
-                        focusManager = focusManager,
-                        removeItem = { canvasId ->
-                            onItemsChange(items().filter { it.canvasId != canvasId })
-                        }, canvasSize = canvasSize,
-                        modifier = Modifier.zIndex(item.z.toFloat())
-                    )
-                }
+    val focusedItem = remember(state.focusManager.focus, state.items) {
+        state.items.firstOrNull { it.canvasId == state.focusManager.focus?.canvasId }
+    }
+    Box(modifier
+        .fillMaxWidth()
+        .boundedAspectRatio(CANVAS_ASPECT_RATIO)
+        .onGloballyPositioned { state.canvasSize = it.size }
+        .background(Color.White, RoundedCornerShape(8.dp))
+        .clip(RoundedCornerShape(8.dp))
+        .transformable(state = rememberTransformableItemState(
+            item = focusedItem,
+            focusManager = state.focusManager
+        ), canPan = { false }, enabled = state.focusManager.focus != null)
+        .itemGesturesEndDetector(
+            item = focusedItem,
+            focusManager = state.focusManager,
+            undoManager = state.undoManager
+        ).itemSelector(state)
+        .clipToBounds()
+    ) {
+        state.items.forEach { item ->
+            key(item.canvasId) {
+                CanvasItem(
+                    item = item,
+                    state = state,
+                    modifier = Modifier.zIndex(item.z.toFloat())
+                )
             }
         }
+        BottomActionBar(
+            state = state,
+            modifier = Modifier.align(Alignment.BottomEnd).zIndex(Float.MAX_VALUE)
+        )
     }
 }
 
+@Suppress("UnusedReceiverParameter")
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun BoxScope.CanvasItem(
     item: CanvasItem,
-    removeItem: (canvasId: String) -> Unit,
-    undoManager: UndoManager,
-    focusManager: FocusManager,
-    canvasSize: Size,
+    state: CanvasState,
     modifier: Modifier = Modifier
 ) {
     Box(modifier = modifier.graphicsLayer {
@@ -153,17 +109,19 @@ private fun BoxScope.CanvasItem(
         this.rotationZ = item.rotationZ
     }.draggableItem(
         item = item,
-        focusManager = focusManager
+        focusManager = state.focusManager
     ).itemGesturesEndDetector(
         item = item,
-        focusManager = focusManager,
-        undoManager = undoManager
+        focusManager = state.focusManager,
+        undoManager = state.undoManager
     ).transformable(state = rememberTransformableItemState(
         item = item,
-        focusManager = focusManager
-    ), canPan = {
-        false
-    }).size(item.width, item.height).background(Color.Yellow).border(2.dp, Color.Blue))
+        focusManager = state.focusManager
+    ), canPan = { false })
+        .size(item.width, item.height)
+        .background(Color.Yellow, RoundedCornerShape(8.dp))
+        .border(2.dp, Color.Blue, RoundedCornerShape(8.dp))
+    )
 //    ItemQuickActions(
 //        item = item,
 //        focusManager = focusManager,
@@ -178,23 +136,21 @@ private fun BoxScope.CanvasItem(
 @Composable
 private fun ItemQuickActions(
     item: CanvasItem,
-    focusManager: FocusManager,
-    canvasSize: Size,
-    onRemove: () -> Unit
+    state: CanvasState
 ) {
     val density = LocalDensity.current
     val actionButtonSize = 44.dp
     val actionButtonSpacing = 8.dp
-    val showActionButtons = remember(focusManager.focus, item.canvasId) {
-        val focus = focusManager.focus
+    val showActionButtons = remember(state.focusManager.focus, item.canvasId) {
+        val focus = state.focusManager.focus
         focus?.canvasId == item.canvasId && !focus.isTransforming && focus.requestedActions
     }
     //TODO: item doesn't really work as a key
-    val actionButtonsLayoutInfo = remember(item, canvasSize, density) {
+    val actionButtonsLayoutInfo = remember(item, state.canvasSize, density) {
         findQuickActionsLayoutInfo(
             allowedSpace = Rect(
                 offset = Offset(0f, 0f),
-                size = Size(canvasSize.width, canvasSize.height)
+                size = state.canvasSize.toSize()
             ), itemRect = item.toRect(density),
             neededSpace = Size(
                 width = actionButtonSize.toPx(density),
@@ -213,7 +169,7 @@ private fun ItemQuickActions(
                 isActive = isActive,
                 size = actionButtonSize,
                 layoutInfo = actionButtonsLayoutInfo,
-                onClick = onRemove,
+                onClick = { state.items = state.items.filter { it.canvasId != item.canvasId } },
                 modifier = Modifier.zIndex(
                     if (isActive) Float.MAX_VALUE else item.z.toFloat().minus(0.1f)
                 )
@@ -261,6 +217,50 @@ private fun ItemQuickAction(
                 contentDescription = null
             )
         }
+    }
+}
+
+@Composable
+private fun BottomActionBar(
+    state: CanvasState,
+    modifier: Modifier = Modifier
+) {
+    Row(modifier.padding(12.dp)) {
+        val scope = rememberCoroutineScope()
+        CanvasActionButton(
+            icon = Icons.Rounded.Undo,
+            enabled = { state.undoManager.hasUndoHistory() }
+        ) {
+            scope.launchBlocker {
+                state.items = state.undoManager.undo(state.items)
+            }
+        }
+        Spacer(Modifier.width(16.dp))
+        CanvasActionButton(
+            icon = Icons.Rounded.Redo,
+            enabled = { state.undoManager.hasRedoHistory() }
+        ) {
+            scope.launchBlocker {
+                state.items = state.undoManager.redo(state.items)
+            }
+        }
+    }
+}
+
+@Composable
+private fun CanvasActionButton(
+    icon: ImageVector,
+    enabled: () -> Boolean,
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit
+) {
+    IconButton(onClick = onClick,
+        enabled = Showcase.acceptsInputs && enabled(),
+        modifier = modifier.graphicsLayer {
+            alpha = if (enabled()) 1f else 0.3f
+        }
+    ) {
+        Icon(icon, null, tint = Color.Black)
     }
 }
 
@@ -313,21 +313,19 @@ private fun Modifier.draggableItem(
 }
 
 private fun Modifier.itemSelector(
-    items: () -> List<CanvasItem>,
-    focusManager: FocusManager,
-    undoManager: UndoManager
+    state: CanvasState
 ) = pointerInput("OnClick") {
     detectTapGestures { clickOffset ->
-        val item = items().minByOrNull { item ->
-            item.takeIf {
-                it.toRect(this@pointerInput).containsInside(clickOffset)
-            }?.z ?: Int.MAX_VALUE
+        val item = state.items.filter {
+            it.toRect(this@pointerInput).containsInside(clickOffset)
+        }.minByOrNull {
+            it.z
         } ?: return@detectTapGestures
-        focusManager.onItemClicked(item.canvasId)
-        val maxZ = items().maxOf { it.z }
+        state.focusManager.onItemClicked(item.canvasId)
+        val maxZ = state.items.maxOf { it.z }
         if (maxZ > item.z) {
             item.z = maxZ + 1
-            undoManager.register(CanvasAction.UpdateZ(canvasId = item.canvasId, maxZ + 1))
+            state.undoManager.register(CanvasAction.UpdateZ(canvasId = item.canvasId, maxZ + 1))
         }
     }
 }

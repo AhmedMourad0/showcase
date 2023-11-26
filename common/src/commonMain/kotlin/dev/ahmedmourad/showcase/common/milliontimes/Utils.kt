@@ -1,9 +1,11 @@
 package dev.ahmedmourad.showcase.common.milliontimes
 
+import androidx.compose.runtime.Stable
 import dev.ahmedmourad.showcase.common.utils.segregated
 import kotlin.math.PI
 import kotlin.time.Duration
 
+@Stable
 fun createTimeMatrix(from: Duration?): Matrix {
     val duration = from?.segregated() ?: return TimeMatrix(
         Digits.from(null),
@@ -23,6 +25,7 @@ fun createTimeMatrix(from: Duration?): Matrix {
     )
 }
 
+@Stable
 private fun TimeMatrix(
     topLeft: Matrix,
     topRight: Matrix,
@@ -30,4 +33,5 @@ private fun TimeMatrix(
     bottomRight: Matrix
 ) = topLeft.concatHorizontal(topRight).concatVertical(bottomLeft.concatHorizontal(bottomRight))
 
+@Stable
 fun Float.rad() = this / 180 * PI.toFloat()

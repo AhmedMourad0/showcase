@@ -1,5 +1,6 @@
 package dev.ahmedmourad.showcase.common.canvas.utils
 
+import androidx.compose.runtime.Stable
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.geometry.Size
@@ -18,6 +19,7 @@ import kotlin.math.cos
 import kotlin.math.roundToInt
 import kotlin.math.sin
 
+@Stable
 fun Offset.rotateBy(angle: Float): Offset {
     val angleInRadians = angle * PI / 180
     return Offset(
@@ -26,11 +28,13 @@ fun Offset.rotateBy(angle: Float): Offset {
     )
 }
 
+@Stable
 operator fun Offset.times(other: Offset) = Offset(
     x = this.x * other.x,
     y = this.y * other.y
 )
 
+@Stable
 fun Offset.rotateAround(center: Offset, angle: Float): Offset {
     //pretend the center is (0, 0)
     val localOffset = this - center
@@ -81,6 +85,7 @@ fun CanvasItem.toRect(density: Density): RotatedRect {
     )
 }
 
+@Stable
 fun findQuickActionsLayoutInfo(
     allowedSpace: Rect,
     itemRect: RotatedRect,
@@ -130,6 +135,7 @@ fun findQuickActionsLayoutInfo(
     }.toQuickActionsLayoutInfo(itemRect, neededSpace, spacing)
 }
 
+@Stable
 private fun Side.isAvailable(
     allowedSpace: Rect,
     itemRect: RotatedRect,
@@ -143,6 +149,7 @@ private fun Side.isAvailable(
     }
 }
 
+@Stable
 private fun Position.toQuickActionsLayoutInfo(
     itemRect: RotatedRect,
     neededSpace: Size,

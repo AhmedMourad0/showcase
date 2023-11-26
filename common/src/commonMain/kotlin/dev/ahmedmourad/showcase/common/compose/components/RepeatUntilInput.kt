@@ -36,12 +36,6 @@ data class UIRepeatUntilState(
     val endsAt: LocalDateTime = LocalDateTime.now()
 ) : Parcelable
 
-fun UIRepeatUntilState.isValid() = true
-
-fun UIRepeatUntilState.createRepeatUntil() = when (type) {
-    UIRepeatUntilType.Indefinitely -> null
-    UIRepeatUntilType.UntilDate -> endsAt
-}
 
 @Composable
 fun TextFieldRepeatUntilInput(

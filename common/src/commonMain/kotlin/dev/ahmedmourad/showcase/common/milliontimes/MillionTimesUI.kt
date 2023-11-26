@@ -18,24 +18,26 @@ import kotlin.math.sin
 
 @Composable
 fun MillionTimesUI(
-    state: MillionTimesState,
+    state: () -> MillionTimesState,
     onStateChange: (MillionTimesState) -> Unit,
     modifier: Modifier = Modifier
 ) {
     Matrix(
-        value = state.matrix,
+        value = { state().matrix },
         modifier = modifier.padding(8.dp)
     )
 }
 
 @Composable
-private fun Matrix(value: Matrix, modifier: Modifier = Modifier) {
+private fun Matrix(value: () -> Matrix, modifier: Modifier = Modifier) {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
         Column(modifier.fillMaxWidth()) {
-            value.rows.forEach { row ->
+            value().rows.forEachIndexed { rowIndex, row ->
                 Row(Modifier.fillMaxWidth()) {
-                    row.nodes.forEach { node ->
-                        MatrixNode(node, Modifier.weight(1f))
+                    row.nodes.forEachIndexed { nodeIndex, node ->
+                        key(rowIndex, nodeIndex) {
+                            MatrixNode(node, Modifier.weight(1f))
+                        }
                     }
                 }
             }

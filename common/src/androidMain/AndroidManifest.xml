@@ -2,9 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
           package="dev.ahmedmourad.showcase.common">
     <application>
+        <profileable android:shell="true" tools:targetApi="q" />
         <activity
             android:name="dev.ahmedmourad.showcase.common.main.MainActivity"
             android:windowSoftInputMode="adjustResize"
+            android:theme="@style/Theme.Showcase.Starting"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

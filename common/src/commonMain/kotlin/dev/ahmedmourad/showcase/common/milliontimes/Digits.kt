@@ -1,7 +1,10 @@
 package dev.ahmedmourad.showcase.common.milliontimes
 
+import androidx.compose.runtime.Stable
+
 object Digits {
 
+    @Stable
     fun from(digit: Int?): Matrix {
         return when (digit) {
             null -> DEAD
@@ -33,12 +36,6 @@ object Digits {
             EMPTY,
             EMPTY,
             EMPTY,
-            EMPTY,
-        ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
             EMPTY
         ), MatrixRow(
             EMPTY,
@@ -63,7 +60,13 @@ object Digits {
             EMPTY,
             EMPTY,
             EMPTY,
+            EMPTY
+        ), MatrixRow(
             EMPTY,
+            EMPTY,
+            EMPTY,
+            EMPTY,
+            EMPTY
         )
     )
 
@@ -73,7 +76,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             VERTICAL,
             TOP_LEFT_CORNER,
@@ -103,7 +106,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -113,7 +116,7 @@ object Digits {
             TOP_LEFT_CORNER,
             HORIZONTAL,
             TOP_RIGHT_CORNER,
-            EMPTY,
+            EMPTY
         ), MatrixRow(
             EMPTY,
             BOTTOM_LEFT_CORNER,
@@ -143,7 +146,7 @@ object Digits {
             EMPTY,
             BOTTOM_LEFT_CORNER,
             BOTTOM_RIGHT_CORNER,
-            EMPTY,
+            EMPTY
         )
     )
 
@@ -153,7 +156,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             BOTTOM_LEFT_CORNER,
             HORIZONTAL,
@@ -183,7 +186,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -193,7 +196,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             BOTTOM_LEFT_CORNER,
             HORIZONTAL,
@@ -223,7 +226,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -233,7 +236,7 @@ object Digits {
             TOP_RIGHT_CORNER,
             EMPTY,
             EMPTY,
-            EMPTY,
+            EMPTY
         ), MatrixRow(
             VERTICAL,
             VERTICAL,
@@ -263,7 +266,7 @@ object Digits {
             EMPTY,
             BOTTOM_LEFT_CORNER,
             BOTTOM_RIGHT_CORNER,
-            EMPTY,
+            EMPTY
         )
     )
 
@@ -273,7 +276,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             VERTICAL,
             TOP_LEFT_CORNER,
@@ -303,7 +306,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -313,7 +316,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             VERTICAL,
             TOP_LEFT_CORNER,
@@ -343,7 +346,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -353,7 +356,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             BOTTOM_LEFT_CORNER,
             HORIZONTAL,
@@ -383,7 +386,7 @@ object Digits {
             EMPTY,
             BOTTOM_LEFT_CORNER,
             BOTTOM_RIGHT_CORNER,
-            EMPTY,
+            EMPTY
         )
     )
 
@@ -393,7 +396,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             VERTICAL,
             TOP_LEFT_CORNER,
@@ -423,7 +426,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 
@@ -433,7 +436,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            TOP_RIGHT_CORNER,
+            TOP_RIGHT_CORNER
         ), MatrixRow(
             VERTICAL,
             TOP_LEFT_CORNER,
@@ -463,7 +466,7 @@ object Digits {
             HORIZONTAL,
             HORIZONTAL,
             HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
+            BOTTOM_RIGHT_CORNER
         )
     )
 }

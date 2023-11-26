@@ -1,6 +1,7 @@
 package dev.ahmedmourad.showcase.common.milliontimes
 
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import dev.ahmedmourad.showcase.common.Parcelable
 import dev.ahmedmourad.showcase.common.Parcelize
 import kotlin.jvm.JvmInline
@@ -25,10 +26,12 @@ data class MatrixNode(
     val secondAngle: Int
 ) : Parcelable
 
+@Stable
 fun Matrix.concatVertical(other: Matrix): Matrix {
     return Matrix(this.rows + other.rows)
 }
 
+@Stable
 fun Matrix.concatHorizontal(other: Matrix): Matrix {
     return Matrix(this.rows.zip(other.rows).map {
         MatrixRow(it.first.nodes + it.second.nodes)

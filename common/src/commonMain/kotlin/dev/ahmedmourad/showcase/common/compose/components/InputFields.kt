@@ -5,8 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardActions
-import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccessTime
 import androidx.compose.material.icons.rounded.CalendarMonth
@@ -22,7 +20,6 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.VisualTransformation
 import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import dev.ahmedmourad.showcase.common.compose.Showcase
@@ -31,10 +28,9 @@ import dev.ahmedmourad.showcase.common.compose.theme.HorizontalSpacing
 import dev.ahmedmourad.showcase.common.pickers.date.DatePickerDialog
 import dev.ahmedmourad.showcase.common.pickers.date.rememberDatePickerState
 import dev.ahmedmourad.showcase.common.pickers.time.TimePickerDialog
-import dev.ahmedmourad.showcase.common.utils.Message
-import dev.ahmedmourad.showcase.common.utils.format
 import dev.ahmedmourad.showcase.common.pickers.withDate
 import dev.ahmedmourad.showcase.common.pickers.withTime
+import dev.ahmedmourad.showcase.common.utils.format
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
 import kotlinx.datetime.LocalDate
@@ -42,16 +38,6 @@ import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlin.experimental.ExperimentalTypeInference
 import kotlin.jvm.JvmName
-
-@OptIn(ExperimentalMaterial3Api::class)
-val OutlinedTextFieldColors: TextFieldColors
-    @Composable get() = TextFieldDefaults.outlinedTextFieldColors(
-        MaterialTheme.colorScheme.onBackground,
-        unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
-        focusedBorderColor = MaterialTheme.colorScheme.primary,
-        focusedLabelColor = MaterialTheme.colorScheme.primary,
-        cursorColor = MaterialTheme.colorScheme.primary
-    )
 
 @JvmName("imageResourceIcon")
 @OptIn(ExperimentalTypeInference::class)
@@ -85,160 +71,6 @@ fun icon(modifier: Modifier = Modifier, showIf: Boolean = true, mirror: Boolean 
                 })
             )
         }
-    }
-}
-
-@Composable
-fun ShowcaseTextField(
-    label: String,
-    leadingIcon: (() -> ImageResource)?,
-    keyboardOptions: KeyboardOptions,
-    value: () -> String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    violations: List<Message> = emptyList(),
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    trailingIcon: (() -> ImageResource)? = null,
-    textStyle: TextStyle = LocalTextStyle.current
-) {
-    ShowcaseTextField(
-        label = label,
-        keyboardOptions = keyboardOptions,
-        value = value,
-        onValueChange = onValueChange,
-        violations = violations,
-        keyboardActions = keyboardActions,
-        visualTransformation = visualTransformation,
-        leadingIcon = icon(leadingIcon),
-        trailingIcon = icon(trailingIcon),
-        textStyle = textStyle,
-        modifier = modifier
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ShowcaseTextArea(
-    label: String,
-    keyboardOptions: KeyboardOptions,
-    value: () -> String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    violations: List<Message> = emptyList(),
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    textStyle: TextStyle = LocalTextStyle.current
-) {
-    Validated(violations, modifier) { showError ->
-        OutlinedTextField(
-            isError = showError,
-            label = { Text(label) },
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            shape = RoundedCornerShape(8.dp),
-            colors = OutlinedTextFieldColors,
-            value = value.invoke(),
-            onValueChange = onValueChange,
-            visualTransformation = visualTransformation,
-            leadingIcon = {
-                if (leadingIcon != null) {
-                    Box(contentAlignment = Alignment.TopStart,
-                        modifier = Modifier.padding(vertical = 16.dp).fillMaxHeight()
-                    ) {
-                        leadingIcon()
-                    }
-                }
-            }, trailingIcon = trailingIcon,
-            textStyle = textStyle,
-            modifier = Modifier.fillMaxWidth().height(100.dp)
-        )
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun ShowcaseTextField(
-    label: String,
-    keyboardOptions: KeyboardOptions,
-    value: () -> String,
-    onValueChange: (String) -> Unit,
-    modifier: Modifier = Modifier,
-    violations: List<Message> = emptyList(),
-    keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
-    leadingIcon: @Composable (() -> Unit)? = null,
-    trailingIcon: @Composable (() -> Unit)? = null,
-    textStyle: TextStyle = LocalTextStyle.current
-) {
-    Validated(violations, modifier) { showError ->
-        OutlinedTextField(
-            isError = showError,
-            label = { Text(label) },
-            keyboardOptions = keyboardOptions,
-            keyboardActions = keyboardActions,
-            singleLine = true,
-            shape = RoundedCornerShape(8.dp),
-            colors = OutlinedTextFieldColors,
-            value = value.invoke(),
-            onValueChange = onValueChange,
-            visualTransformation = visualTransformation,
-            leadingIcon = leadingIcon,
-            trailingIcon = trailingIcon,
-            textStyle = textStyle,
-            modifier = Modifier.fillMaxWidth()
-        )
-    }
-}
-
-@Composable
-fun TextDatePicker(
-    value: () -> LocalDate,
-    onValueChange: (LocalDate) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    var showPicker by remember { mutableStateOf(false) }
-    val pickerState = rememberDatePickerState()
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier
-            .clip(RoundedCornerShape(8.dp))
-            .clickable(Showcase.acceptsInputs) {
-                pickerState.displayed = value.invoke()
-                showPicker = true
-            }.padding(vertical = 12.dp)
-    ) {
-        Image(
-            imageVector = Icons.Rounded.CalendarMonth,
-            contentDescription = "Select date",
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier.size(20.dp)
-        )
-        Spacer(Modifier.width(12.dp))
-        Text(
-            text = value.invoke().format(),
-            style = MaterialTheme.typography.titleMedium.copy(
-                color = MaterialTheme.colorScheme.onBackground
-            )
-        )
-        Spacer(Modifier.width(8.dp))
-        Image(
-            imageVector = Icons.Rounded.KeyboardArrowDown,
-            contentDescription = "Select date",
-            colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onBackground),
-            modifier = Modifier.size(20.dp)
-        )
-        DatePickerDialog(
-            show = showPicker,
-            selected = value,
-            onSelectedChange = {
-                onValueChange(it)
-                showPicker = false
-            }, state = pickerState,
-            onDismissRequest = { showPicker = false },
-        )
     }
 }
 
@@ -372,7 +204,6 @@ fun PickerHeader(
     }
 }
 
-@OptIn(ExperimentalTextApi::class)
 @Stable
 @Composable
 fun rememberResizableTextStyle(text: String, style: TextStyle, maxWidth: Int): TextStyle {

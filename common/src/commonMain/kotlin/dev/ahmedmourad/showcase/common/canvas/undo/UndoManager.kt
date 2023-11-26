@@ -1,6 +1,7 @@
 package dev.ahmedmourad.showcase.common.canvas.undo
 
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.Snapshot
 import dev.ahmedmourad.showcase.common.canvas.models.CanvasItem
 
@@ -9,8 +10,8 @@ class UndoManager(
     private val items: () -> List<CanvasItem>
 ) {
 
-    private val undoHistory = mutableListOf<CanvasAction>()
-    private val redoHistory = mutableListOf<CanvasAction>()
+    private val undoHistory = mutableStateListOf<CanvasAction>()
+    private val redoHistory = mutableStateListOf<CanvasAction>()
     private var snapshot: Snapshot = Snapshot.takeSnapshot()
 
     fun register(action: CanvasAction) {
