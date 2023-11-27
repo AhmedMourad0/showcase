@@ -8,6 +8,7 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.WindowCompat
 import dev.ahmedmourad.showcase.common.R
 import dev.ahmedmourad.showcase.common.compose.theme.AndroidShowcaseTheme
+import dev.ahmedmourad.showcase.common.screens.home.HomeScreen
 import dev.ahmedmourad.showcase.common.utils.LocalActivity
 import dev.ahmedmourad.showcase.common.utils.SetupSystemBarColors
 

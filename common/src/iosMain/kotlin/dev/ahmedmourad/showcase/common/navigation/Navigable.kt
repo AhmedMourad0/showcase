@@ -57,9 +57,9 @@ import dev.ahmedmourad.showcase.common.compose.theme.HorizontalPadding
 import dev.ahmedmourad.showcase.common.compose.unblock
 import dev.ahmedmourad.showcase.common.ios.UIControllerEvent
 import dev.ahmedmourad.showcase.common.ios.UIControllerLifecycleEffect
-import dev.ahmedmourad.showcase.common.pickers.toDp
-import dev.ahmedmourad.showcase.common.pickers.toPx
-import dev.ahmedmourad.showcase.common.pickers.unsalable
+import dev.ahmedmourad.showcase.common.utils.toDp
+import dev.ahmedmourad.showcase.common.utils.toPx
+import dev.ahmedmourad.showcase.common.utils.unsalable
 import kotlinx.coroutines.launch
 import kotlin.math.roundToInt
 

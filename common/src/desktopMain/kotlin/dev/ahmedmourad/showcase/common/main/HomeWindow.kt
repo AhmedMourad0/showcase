@@ -18,14 +18,13 @@ import androidx.compose.ui.window.WindowPosition
 import androidx.compose.ui.window.rememberWindowState
 import dev.ahmedmourad.showcase.common.Handle
 import dev.ahmedmourad.showcase.common.RR
-import dev.ahmedmourad.showcase.common.canvas.CanvasUI
-import dev.ahmedmourad.showcase.common.canvas.CanvasViewModel
-import dev.ahmedmourad.showcase.common.home.ScreensCarousel
-import dev.ahmedmourad.showcase.common.compose.debug.ThemeModeDebugger
-import dev.ahmedmourad.showcase.common.home.CarouselScreen
-import dev.ahmedmourad.showcase.common.home.CarouselState
-import dev.ahmedmourad.showcase.common.milliontimes.MillionTimesUI
-import dev.ahmedmourad.showcase.common.milliontimes.MillionTimesViewModel
+import dev.ahmedmourad.showcase.common.screens.canvas.CanvasUI
+import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
+import dev.ahmedmourad.showcase.common.screens.home.ScreensCarousel
+import dev.ahmedmourad.showcase.common.screens.home.CarouselScreen
+import dev.ahmedmourad.showcase.common.screens.home.CarouselState
+import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesUI
+import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable

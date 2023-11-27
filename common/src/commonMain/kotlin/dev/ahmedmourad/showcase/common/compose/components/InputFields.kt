@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.AccessTime
-import androidx.compose.material.icons.rounded.CalendarMonth
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -23,17 +22,10 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import dev.ahmedmourad.showcase.common.compose.Showcase
 import dev.ahmedmourad.showcase.common.compose.modifiers.mirror
-import dev.ahmedmourad.showcase.common.compose.theme.HorizontalSpacing
-import dev.ahmedmourad.showcase.common.pickers.date.component.DatePickerDialog
-import dev.ahmedmourad.showcase.common.pickers.date.component.rememberDatePickerState
 import dev.ahmedmourad.showcase.common.pickers.time.TimePickerDialog
-import dev.ahmedmourad.showcase.common.pickers.withDate
-import dev.ahmedmourad.showcase.common.pickers.withTime
 import dev.ahmedmourad.showcase.common.utils.format
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
-import kotlinx.datetime.LocalDate
-import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.LocalTime
 import kotlin.experimental.ExperimentalTypeInference
 import kotlin.jvm.JvmName
@@ -74,35 +66,6 @@ fun icon(modifier: Modifier = Modifier, showIf: Boolean = true, mirror: Boolean 
 }
 
 @Composable
-fun TextFieldDatePicker(
-    value: () -> LocalDate,
-    onValueChange: (LocalDate) -> Unit,
-    hasTrailingIcon: Boolean = true,
-    modifier: Modifier = Modifier
-) {
-    Box(modifier) {
-        var showPicker by remember { mutableStateOf(false) }
-        PickerHeader(
-            text = value.invoke().format(),
-            maxLines = 1,
-            onClick = { showPicker = true },
-            leadingIcon = icon { Icons.Rounded.CalendarMonth },
-            trailingIcon = icon(showIf = hasTrailingIcon) { Icons.Rounded.KeyboardArrowDown },
-            modifier = Modifier.fillMaxWidth()
-        )
-        DatePickerDialog(
-            show = showPicker,
-            selected = value,
-            onSelectedChange = {
-                onValueChange(it)
-                showPicker = false
-            }, state = rememberDatePickerState(value.invoke()),
-            onDismissRequest = { showPicker = false },
-        )
-    }
-}
-
-@Composable
 fun TextFieldTimePicker(
     value: () -> LocalTime,
     onValueChange: (LocalTime) -> Unit,
@@ -124,29 +87,6 @@ fun TextFieldTimePicker(
             value = value,
             onValueChange = { onValueChange(it) },
             onDismissRequest = { showPicker = false },
-        )
-    }
-}
-
-@Composable
-fun TextFieldDateTimePicker(
-    value: () -> LocalDateTime,
-    onValueChange: (LocalDateTime) -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Row(modifier) {
-        TextFieldDatePicker(
-            value = { value.invoke().date },
-            onValueChange = { onValueChange(value.invoke().withDate(it)) },
-            hasTrailingIcon = false,
-            modifier = Modifier.weight(6f)
-        )
-        Spacer(Modifier.width(HorizontalSpacing))
-        TextFieldTimePicker(
-            value = { value.invoke().time },
-            onValueChange = { onValueChange(value.invoke().withTime(it)) },
-            hasTrailingIcon = false,
-            modifier = Modifier.weight(5f)
         )
     }
 }

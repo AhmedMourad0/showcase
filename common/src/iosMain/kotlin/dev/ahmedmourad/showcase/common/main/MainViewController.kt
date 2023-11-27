@@ -5,7 +5,7 @@ import androidx.compose.runtime.Stable
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.ui.window.ComposeUIViewController
 import dev.ahmedmourad.showcase.common.PreferenceManager
-import dev.ahmedmourad.showcase.common.home.HomeScreen
+import dev.ahmedmourad.showcase.common.screens.home.HomeScreen
 import dev.ahmedmourad.showcase.common.compose.theme.IosShowcaseTheme
 import dev.ahmedmourad.showcase.common.defaultIsInDarkMode
 import dev.ahmedmourad.showcase.common.ios.LocalObservableUIController
