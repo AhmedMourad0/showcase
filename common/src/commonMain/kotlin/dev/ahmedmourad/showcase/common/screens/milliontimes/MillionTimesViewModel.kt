@@ -1,43 +1,59 @@
 package dev.ahmedmourad.showcase.common.screens.milliontimes
 
-import androidx.compose.runtime.Immutable
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.Transition
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Stable
 import dev.ahmedmourad.showcase.common.Handle
-import dev.ahmedmourad.showcase.common.InstantParceler
-import dev.ahmedmourad.showcase.common.Parcelable
-import dev.ahmedmourad.showcase.common.Parcelize
-import dev.ahmedmourad.showcase.common.TypeParceler
 import dev.ahmedmourad.showcase.common.ViewModel
-import dev.ahmedmourad.showcase.common.utils.SaveableMutableStateFlow
-import dev.ahmedmourad.showcase.common.utils.tickerFlow
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.update
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlin.time.Duration.Companion.seconds
+import kotlin.coroutines.CoroutineContext
 
 @Stable
 open class MillionTimesViewModel(handle: Handle) : ViewModel(handle) {
-    val state = SaveableMutableStateFlow(MillionTimesState(), handle)
-    init {
-        tickerFlow(
-            period = 1.seconds,
-            initialDelay = 3.seconds
-        ).map {
-            state.update {
-                it.copy(matrix = createTimeMatrix(Clock.System.now().minus(it.start)))
-            }
-        }.flowOn(Dispatchers.Default).launchIn(viewModelScope)
+    val state = MillionTimesState()
+}
+
+@Stable
+class MillionTimesState {
+    val start: Instant = Clock.System.now()
+    val matrix = UIMatrix(width = 10, height = 12)
+}
+
+@Stable
+class UIMatrix(val width: Int, val height: Int) {
+    val rows = List(height) {
+        UIMatrixRow(width)
     }
 }
 
-@Parcelize
-@TypeParceler<Instant, InstantParceler>
-@Immutable
-data class MillionTimesState(
-    val start: Instant = Clock.System.now(),
-    val matrix: Matrix = createTimeMatrix(null)
-) : Parcelable
+@Stable
+class UIMatrixRow(val width: Int) {
+    val nodes = List(width) {
+        UIMatrixNode()
+    }
+}
+
+@Stable
+class UIMatrixNode {
+    val firstAngle = Animatable(Digits.EMPTY.firstAngle)
+    val secondAngle = Animatable(Digits.EMPTY.secondAngle)
+}
+
+suspend fun UIMatrix.animateTo(matrix: Matrix, scope: CoroutineScope) {
+    repeat(this.height) { rowIndex ->
+        repeat(this.width) { nodeIndex ->
+            val uiNode = this.rows[rowIndex].nodes[nodeIndex]
+            val matrixNode = matrix.rows[rowIndex].nodes[nodeIndex]
+            scope.launch {
+                uiNode.firstAngle.animateTo(matrixNode.firstAngle, tween(700))
+            }
+            scope.launch {
+                uiNode.secondAngle.animateTo(matrixNode.secondAngle, tween(700))
+            }
+        }
+    }
+}

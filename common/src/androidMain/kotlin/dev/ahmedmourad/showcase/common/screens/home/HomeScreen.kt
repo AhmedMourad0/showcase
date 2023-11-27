@@ -21,6 +21,7 @@ import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
 import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersUI
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
+import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesUI
 
 @Stable
 class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewModel(Handle(handle))
@@ -49,13 +50,12 @@ fun HomeScreen() {
                     onStateChange = { datePickersVM.state.value = it }
                 )
             })
-//            add(CarouselScreen("Million Times") {
-//                val state by millionTimesVM.state.collectAsState()
-//                MillionTimesUI(
-//                    state = { state },
-//                    onStateChange = { millionTimesVM.state.value = it }
-//                )
-//            })
+            add(CarouselScreen("Million Times") {
+                MillionTimesUI(
+                    state = millionTimesVM.state,
+                    carouselState = carouselState
+                )
+            })
             add(CarouselScreen("screen #2") {
                 Box(Modifier.fillMaxSize().background(Color.Red))
             })

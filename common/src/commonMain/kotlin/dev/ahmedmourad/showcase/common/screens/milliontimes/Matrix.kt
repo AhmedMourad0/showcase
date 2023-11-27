@@ -22,8 +22,8 @@ data class MatrixRow(val nodes: List<MatrixNode>) : Parcelable {
 @Parcelize
 @Immutable
 data class MatrixNode(
-    val firstAngle: Int,
-    val secondAngle: Int
+    val firstAngle: Float,
+    val secondAngle: Float
 ) : Parcelable
 
 @Stable

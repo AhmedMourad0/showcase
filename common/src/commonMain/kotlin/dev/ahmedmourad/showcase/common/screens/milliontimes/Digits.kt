@@ -22,13 +22,13 @@ object Digits {
         }
     }
     
-    private val TOP_LEFT_CORNER = MatrixNode(0, 270)
-    private val TOP_RIGHT_CORNER = MatrixNode(180, 270)
-    private val BOTTOM_LEFT_CORNER = MatrixNode(90, 0)
-    private val BOTTOM_RIGHT_CORNER = MatrixNode(90, 180)
-    private val HORIZONTAL = MatrixNode(0, 180)
-    private val VERTICAL = MatrixNode(90, 270)
-    private val EMPTY = MatrixNode(225, 225)
+    private val TOP_LEFT_CORNER = MatrixNode(0f, 270f)
+    private val TOP_RIGHT_CORNER = MatrixNode(180f, 270f)
+    private val BOTTOM_LEFT_CORNER = MatrixNode(90f, 0f)
+    private val BOTTOM_RIGHT_CORNER = MatrixNode(90f, 180f)
+    private val HORIZONTAL = MatrixNode(0f, 180f)
+    private val VERTICAL = MatrixNode(90f, 270f)
+    val EMPTY = MatrixNode(225f, 225f)
 
     private val DEAD = Matrix(
         MatrixRow(
@@ -361,13 +361,13 @@ object Digits {
             BOTTOM_LEFT_CORNER,
             HORIZONTAL,
             HORIZONTAL,
-            MatrixNode(180, 225),
-            MatrixNode(90, 225)
+            MatrixNode(180f, 225f),
+            MatrixNode(90f, 225f)
         ), MatrixRow(
             EMPTY,
             EMPTY,
-            MatrixNode(45, 270),
-            MatrixNode(45, 270),
+            MatrixNode(45f, 270f),
+            MatrixNode(45f, 270f),
             EMPTY
         ), MatrixRow(
             EMPTY,

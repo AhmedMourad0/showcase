@@ -137,14 +137,7 @@ private fun CarouselPager(
             state = state,
             onStateChange = onStateChange,
             expansionRatio = expansionRatio,
-            modifier = Modifier.fillMaxSize().graphicsLayer {
-                val pageOffset = pagerState.getOffsetFractionForPage(index).absoluteValue
-                scaleY = lerp(
-                    1f,
-                    0.8f,
-                    pageOffset.coerceIn(0f, 1f)
-                )
-            }
+            modifier = Modifier.fillMaxSize()
         )
     }
 }
