@@ -1,6 +1,5 @@
 package dev.ahmedmourad.showcase.common
 
-import dev.ahmedmourad.showcase.common.pickers.time.TimePickerType
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -11,7 +10,6 @@ import platform.Foundation.NSUserDefaults
 import platform.Foundation.NSUserDefaultsDidChangeNotification
 
 private const val IsInDarkModeKey = "is_in_dark_mode"
-private const val PreferredTimePickerKey = "preferred_time_picker"
 
 @OptIn(ExperimentalCoroutinesApi::class)
 actual class PreferenceManager {
@@ -38,23 +36,6 @@ actual class PreferenceManager {
                 otherwise = otherwise,
                 get = defaults::boolForKey
             )
-        }
-    }
-
-    actual suspend fun setPreferredTimePicker(value: TimePickerType) {
-        defaults.setInteger(value.ordinal.toLong(), forKey = PreferredTimePickerKey)
-    }
-
-    actual fun preferredTimePicker(otherwise: () -> TimePickerType): Flow<TimePickerType> {
-        return defaults.asFlow().mapLatest {
-            defaults.getOrDefault(
-                key = PreferredTimePickerKey,
-                otherwise = otherwise
-            ) {
-                TimePickerType.values()
-                    .getOrNull(defaults.integerForKey(it).toInt())
-                    ?: otherwise()
-            }
         }
     }
 }

@@ -105,11 +105,6 @@ private fun CarouselPager(
         pageCount = { Int.MAX_VALUE },
         initialPage = startIndex
     )
-//    val currentPageOffsetFraction by remember(pagerState) {
-//        derivedStateOf {
-//            pagerState.currentPageOffsetFraction
-//        }
-//    }
     val layoutDirection = LocalLayoutDirection.current
     val safeDrawingPadding = WindowInsets.safeDrawing.asPaddingValues()
     HorizontalPager(
@@ -143,10 +138,7 @@ private fun CarouselPager(
             onStateChange = onStateChange,
             expansionRatio = expansionRatio,
             modifier = Modifier.fillMaxSize().graphicsLayer {
-                val pageOffset = pagerState.currentPage
-                    .minus(index)
-                    .plus(pagerState.currentPageOffsetFraction)
-                    .absoluteValue
+                val pageOffset = pagerState.getOffsetFractionForPage(index).absoluteValue
                 scaleY = lerp(
                     1f,
                     0.8f,

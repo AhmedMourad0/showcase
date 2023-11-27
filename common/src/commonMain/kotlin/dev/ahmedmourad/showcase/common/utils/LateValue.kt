@@ -3,9 +3,6 @@ package dev.ahmedmourad.showcase.common.utils
 import androidx.compose.runtime.Immutable
 import dev.ahmedmourad.showcase.common.*
 
-typealias LocalValue<T> = LateValue<LocalReadWriteException, T>
-typealias LocalList<T> = LateList<LocalReadWriteException, T>
-
 @Immutable
 sealed interface LateValue<out E : Parcelable?, out T : Parcelable?> : Parcelable {
     @Parcelize

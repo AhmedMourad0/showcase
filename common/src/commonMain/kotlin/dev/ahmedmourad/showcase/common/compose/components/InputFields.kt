@@ -22,11 +22,8 @@ import androidx.compose.ui.text.rememberTextMeasurer
 import androidx.compose.ui.unit.dp
 import dev.ahmedmourad.showcase.common.compose.Showcase
 import dev.ahmedmourad.showcase.common.compose.modifiers.mirror
-import dev.ahmedmourad.showcase.common.pickers.time.TimePickerDialog
-import dev.ahmedmourad.showcase.common.utils.format
 import dev.icerock.moko.resources.ImageResource
 import dev.icerock.moko.resources.compose.painterResource
-import kotlinx.datetime.LocalTime
 import kotlin.experimental.ExperimentalTypeInference
 import kotlin.jvm.JvmName
 
@@ -62,32 +59,6 @@ fun icon(modifier: Modifier = Modifier, showIf: Boolean = true, mirror: Boolean 
                 })
             )
         }
-    }
-}
-
-@Composable
-fun TextFieldTimePicker(
-    value: () -> LocalTime,
-    onValueChange: (LocalTime) -> Unit,
-    hasTrailingIcon: Boolean  = true,
-    modifier: Modifier = Modifier
-) {
-    Box(modifier) {
-        var showPicker by remember { mutableStateOf(false) }
-        PickerHeader(
-            text = value.invoke().format(),
-            maxLines = 1,
-            onClick = { showPicker = true },
-            leadingIcon = icon { Icons.Rounded.AccessTime },
-            trailingIcon = icon(showIf = hasTrailingIcon) { Icons.Rounded.KeyboardArrowDown },
-            modifier = Modifier.fillMaxWidth()
-        )
-        TimePickerDialog(
-            show = showPicker,
-            value = value,
-            onValueChange = { onValueChange(it) },
-            onDismissRequest = { showPicker = false },
-        )
     }
 }
 
