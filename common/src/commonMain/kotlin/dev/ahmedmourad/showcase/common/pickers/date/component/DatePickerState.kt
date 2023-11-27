@@ -1,4 +1,4 @@
-package dev.ahmedmourad.showcase.common.pickers.date
+package dev.ahmedmourad.showcase.common.pickers.date.component
 
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.Saver

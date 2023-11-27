@@ -12,9 +12,14 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.calculateEndPadding
+import androidx.compose.foundation.layout.calculateStartPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeDrawing
+import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.pager.HorizontalPager
@@ -35,8 +40,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
-import androidx.compose.ui.graphics.lerp
 import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -105,17 +110,34 @@ private fun CarouselPager(
         pageCount = { Int.MAX_VALUE },
         initialPage = startIndex
     )
-    val currentPageOffsetFraction by remember(pagerState) {
-        derivedStateOf {
-            pagerState.currentPageOffsetFraction
-        }
-    }
+//    val currentPageOffsetFraction by remember(pagerState) {
+//        derivedStateOf {
+//            pagerState.currentPageOffsetFraction
+//        }
+//    }
+    val layoutDirection = LocalLayoutDirection.current
+    val safeDrawingPadding = WindowInsets.safeDrawing.asPaddingValues()
     HorizontalPager(
         state = pagerState,
         contentPadding = PaddingValues(
-            horizontal = 28.dp * (1f - expansionRatio()),
-            vertical = 60.dp * (1f - expansionRatio())
-        ), pageSpacing = 16.dp * (1f - expansionRatio()),
+            start = lerp(
+                28.dp + safeDrawingPadding.calculateStartPadding(layoutDirection),
+                0.dp,
+                expansionRatio()
+            ), end = lerp(
+                28.dp + safeDrawingPadding.calculateEndPadding(layoutDirection),
+                0.dp,
+                expansionRatio()
+            ), top = lerp(
+                60.dp + safeDrawingPadding.calculateTopPadding(),
+                0.dp,
+                expansionRatio()
+            ), bottom = lerp(
+                60.dp + safeDrawingPadding.calculateBottomPadding(),
+                0.dp,
+                expansionRatio()
+            )
+        ), pageSpacing = lerp(16.dp, 0.dp, expansionRatio()),
         userScrollEnabled = state() == CarouselState.Collapsed,
         key = { calculateScreenIndex(it, startIndex, screens.size) },
         modifier = modifier
@@ -128,12 +150,12 @@ private fun CarouselPager(
             modifier = Modifier.fillMaxSize().graphicsLayer {
                 val pageOffset = pagerState.currentPage
                     .minus(index)
-                    .plus(currentPageOffsetFraction)
+                    .plus(pagerState.currentPageOffsetFraction)
                     .absoluteValue
                 scaleY = lerp(
-                    start = 0.8f,
-                    stop = 1f,
-                    fraction = 1f - pageOffset.coerceIn(0f, 1f)
+                    1f,
+                    0.8f,
+                    pageOffset.coerceIn(0f, 1f)
                 )
             }
         )
@@ -153,11 +175,31 @@ private fun CarouselScreen(
     expansionRatio: () -> Float,
     modifier: Modifier = Modifier
 ) {
-    val shape = RoundedCornerShape(8.dp * (1f - expansionRatio()))
+    val shape = RoundedCornerShape(lerp(8.dp, 0.dp, expansionRatio()))
+    val layoutDirection = LocalLayoutDirection.current
+    val safeDrawingPadding = WindowInsets.safeDrawing.asPaddingValues()
     Box(modifier
         .fillMaxSize()
-        .graphicsLayer {
-            this.shadowElevation = 8.dp.toPx() * (1f - expansionRatio())
+        .padding(
+            start = lerp(
+                0.dp,
+                safeDrawingPadding.calculateStartPadding(layoutDirection),
+                expansionRatio()
+            ), end = lerp(
+                0.dp,
+                safeDrawingPadding.calculateEndPadding(layoutDirection),
+                expansionRatio()
+            ), top = lerp(
+                0.dp,
+                safeDrawingPadding.calculateTopPadding(),
+                expansionRatio()
+            ), bottom = lerp(
+                0.dp,
+                safeDrawingPadding.calculateBottomPadding(),
+                expansionRatio()
+            )
+        ).graphicsLayer {
+            this.shadowElevation = lerp(8.dp.toPx(), 0f, expansionRatio())
             this.shape = shape
         }.background(MaterialTheme.colorScheme.background, shape)
     ) {
@@ -191,17 +233,13 @@ private fun ScreenTopBar(
     expansionRatio: () -> Float,
     modifier: Modifier = Modifier
 ) {
-    val density = LocalDensity.current
     Row(verticalAlignment = Alignment.CenterVertically,
-        modifier = modifier.padding(
+        modifier = modifier.fillMaxWidth().padding(
             start = HorizontalPadding,
             end = HorizontalPadding,
-            top = lerp(
-                8.dp,
-                WindowInsets.systemBars.getTop(density).toDp(density) + 12.dp,
-                expansionRatio()
-            ), bottom = lerp(8.dp, 12.dp, expansionRatio())
-        ).fillMaxWidth()
+            top = lerp(8.dp, 12.dp, expansionRatio()),
+            bottom = lerp(8.dp, 12.dp, expansionRatio())
+        )
     ) {
         ActionButton(
             imageVector = Icons.Rounded.Close,

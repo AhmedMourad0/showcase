@@ -36,7 +36,6 @@ fun AndroidShowcaseTheme(
         }
     }) {
         Box(modifier = modifier
-            .safeDrawingPadding()
             .clip(shape)
             .background(MaterialTheme.colorScheme.background, shape)
             .semantics { testTagsAsResourceId = true }

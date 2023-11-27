@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import dev.ahmedmourad.showcase.common.ModelType
 import dev.ahmedmourad.showcase.common.OptionalDialog
 import dev.ahmedmourad.showcase.common.compose.Showcase
-import dev.ahmedmourad.showcase.common.pickers.date.model.ShorterMonthFallback
+import dev.ahmedmourad.showcase.common.pickers.date.component.models.ShorterMonthFallback
 
 @Composable
 fun TextFieldShorterMonthFallbackPicker(

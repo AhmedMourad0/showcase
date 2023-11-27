@@ -1,4 +1,4 @@
-package dev.ahmedmourad.showcase.common.pickers.date
+package dev.ahmedmourad.showcase.common.pickers.date.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

@@ -5,6 +5,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import androidx.core.view.WindowCompat
 import dev.ahmedmourad.showcase.common.R
 import dev.ahmedmourad.showcase.common.compose.theme.AndroidShowcaseTheme
 import dev.ahmedmourad.showcase.common.utils.LocalActivity
@@ -15,6 +16,7 @@ class MainActivity : AppCompatActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Showcase)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         setContent {
             CompositionLocalProvider(LocalActivity provides this@MainActivity) {
                 AndroidShowcaseTheme {

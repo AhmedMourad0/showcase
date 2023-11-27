@@ -1,4 +1,4 @@
-package dev.ahmedmourad.showcase.common.utils
+package dev.ahmedmourad.showcase.common.compose
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect

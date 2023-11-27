@@ -1,4 +1,4 @@
-package dev.ahmedmourad.showcase.common.pickers.date
+package dev.ahmedmourad.showcase.common.pickers.date.component
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
@@ -16,6 +16,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import dev.ahmedmourad.showcase.common.compose.Showcase
+import dev.ahmedmourad.showcase.common.pickers.getDisplayName
 import kotlinx.datetime.Month
 import kotlinx.datetime.number
 
@@ -35,7 +36,7 @@ fun MonthsView(
                 chunk.forEach { month ->
                     key(month.number) {
                         val text = remember(month) {
-                            "month.getDisplayName()"
+                            month.getDisplayName()
                         }
                         Box(Modifier
                             .weight(1f)

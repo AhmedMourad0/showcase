@@ -1,4 +1,4 @@
-package dev.ahmedmourad.showcase.common.pickers.date.model
+package dev.ahmedmourad.showcase.common.pickers.date.component.models
 
 import androidx.compose.runtime.Immutable
 

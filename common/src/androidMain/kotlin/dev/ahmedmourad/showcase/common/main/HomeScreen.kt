@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +22,8 @@ import dev.ahmedmourad.showcase.common.home.CarouselScreen
 import dev.ahmedmourad.showcase.common.home.CarouselState
 import dev.ahmedmourad.showcase.common.home.ScreensCarousel
 import dev.ahmedmourad.showcase.common.milliontimes.MillionTimesViewModel
+import dev.ahmedmourad.showcase.common.pickers.date.DatePickersUI
+import dev.ahmedmourad.showcase.common.pickers.date.DatePickersViewModel
 
 @Stable
 class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewModel(Handle(handle))
@@ -28,17 +31,28 @@ class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewMo
 @Stable
 class ScreenCanvasViewModel(handle: SavedStateHandle) : CanvasViewModel(Handle(handle))
 
+@Stable
+class ScreenDatePickersViewModel(handle: SavedStateHandle) : DatePickersViewModel(Handle(handle))
+
 @Composable
 fun HomeScreen() {
     val millionTimesVM: ScreenMillionTimesViewModel = viewModel()
     val canvasVM: ScreenCanvasViewModel = viewModel()
-    var carouselState by remember { mutableStateOf(CarouselState.Expanded) }
-    val screens = remember(millionTimesVM, canvasVM) {
+    val datePickersVM: ScreenDatePickersViewModel = viewModel()
+    var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
+    val screens = remember(millionTimesVM, canvasVM, datePickersVM) {
         buildList {
-            add(CarouselScreen(title = "Canvas") {
+            add(CarouselScreen("Canvas") {
                 CanvasUI(state = canvasVM.state)
             })
-//            add(CarouselScreen(title = "Million Times") {
+            add(CarouselScreen("Date Pickers") {
+                val state by datePickersVM.state.collectAsState()
+                DatePickersUI(
+                    state = { state },
+                    onStateChange = { datePickersVM.state.value = it }
+                )
+            })
+//            add(CarouselScreen("Million Times") {
 //                val state by millionTimesVM.state.collectAsState()
 //                MillionTimesUI(
 //                    state = { state },
