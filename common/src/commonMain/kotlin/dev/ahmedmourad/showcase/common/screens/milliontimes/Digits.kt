@@ -7,466 +7,466 @@ object Digits {
     @Stable
     fun from(digit: Int?): Matrix {
         return when (digit) {
-            null -> DEAD
-            0 -> ZERO
-            1 -> ONE
-            2 -> TWO
-            3 -> THREE
-            4 -> FOUR
-            5 -> FIVE
-            6 -> SIX
-            7 -> SEVEN
-            8 -> EIGHT
-            9 -> NINE
+            null -> Dead
+            0 -> Zero
+            1 -> One
+            2 -> Two
+            3 -> Three
+            4 -> Four
+            5 -> Five
+            6 -> Six
+            7 -> Seven
+            8 -> Eight
+            9 -> Nine
             else -> throw IllegalArgumentException("Digit must be between 0 and 9: $digit")
         }
     }
     
-    private val TOP_LEFT_CORNER = MatrixNode(0f, 270f)
-    private val TOP_RIGHT_CORNER = MatrixNode(180f, 270f)
-    private val BOTTOM_LEFT_CORNER = MatrixNode(90f, 0f)
-    private val BOTTOM_RIGHT_CORNER = MatrixNode(90f, 180f)
-    private val HORIZONTAL = MatrixNode(0f, 180f)
-    private val VERTICAL = MatrixNode(90f, 270f)
-    val EMPTY = MatrixNode(225f, 225f)
+    private val TopLeftCorner = MatrixNode(0f, 270f)
+    private val TopRightCorner = MatrixNode(180f, 270f)
+    private val BottomLeftCorner = MatrixNode(90f, 0f)
+    private val BottomRightCorner = MatrixNode(90f, 180f)
+    private val Horizontal = MatrixNode(0f, 180f)
+    private val Vertical = MatrixNode(90f, 270f)
+    val Empty = MatrixNode(225f, 225f)
 
-    private val DEAD = Matrix(
+    private val Dead = Matrix(
         MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Empty,
+            Empty,
+            Empty,
+            Empty,
+            Empty
         )
     )
 
-    private val ZERO = Matrix(
+    private val Zero = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            VERTICAL,
-            EMPTY,
-            VERTICAL,
-            VERTICAL
+            Vertical,
+            Vertical,
+            Empty,
+            Vertical,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            VERTICAL,
-            EMPTY,
-            VERTICAL,
-            VERTICAL
+            Vertical,
+            Vertical,
+            Empty,
+            Vertical,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val ONE = Matrix(
+    private val One = Matrix(
         MatrixRow(
-            EMPTY,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            EMPTY
+            Empty,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            BOTTOM_LEFT_CORNER,
-            TOP_RIGHT_CORNER,
-            VERTICAL,
-            EMPTY
+            Empty,
+            BottomLeftCorner,
+            TopRightCorner,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            VERTICAL,
-            VERTICAL,
-            EMPTY
+            Empty,
+            Empty,
+            Vertical,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            VERTICAL,
-            VERTICAL,
-            EMPTY
+            Empty,
+            Empty,
+            Vertical,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            VERTICAL,
-            VERTICAL,
-            EMPTY
+            Empty,
+            Empty,
+            Vertical,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            BOTTOM_LEFT_CORNER,
-            BOTTOM_RIGHT_CORNER,
-            EMPTY
+            Empty,
+            Empty,
+            BottomLeftCorner,
+            BottomRightCorner,
+            Empty
         )
     )
 
-    private val TWO = Matrix(
+    private val Two = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val THREE = Matrix(
+    private val Three = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val FOUR = Matrix(
+    private val Four = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            TOP_RIGHT_CORNER,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            TopLeftCorner,
+            TopRightCorner,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            VERTICAL,
-            VERTICAL,
-            EMPTY,
-            EMPTY,
-            EMPTY
+            Vertical,
+            Vertical,
+            Empty,
+            Empty,
+            Empty
         ), MatrixRow(
-            VERTICAL,
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            TOP_RIGHT_CORNER,
-            EMPTY
+            Vertical,
+            Vertical,
+            TopLeftCorner,
+            TopRightCorner,
+            Empty
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            BOTTOM_RIGHT_CORNER,
-            BOTTOM_LEFT_CORNER,
-            TOP_RIGHT_CORNER
+            Vertical,
+            BottomLeftCorner,
+            BottomRightCorner,
+            BottomLeftCorner,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            TOP_LEFT_CORNER,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            TopLeftCorner,
+            BottomRightCorner
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            BOTTOM_LEFT_CORNER,
-            BOTTOM_RIGHT_CORNER,
-            EMPTY
+            Empty,
+            Empty,
+            BottomLeftCorner,
+            BottomRightCorner,
+            Empty
         )
     )
 
-    private val FIVE = Matrix(
+    private val Five = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val SIX = Matrix(
+    private val Six = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val SEVEN = Matrix(
+    private val Seven = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
             MatrixNode(180f, 225f),
             MatrixNode(90f, 225f)
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
+            Empty,
+            Empty,
             MatrixNode(45f, 270f),
             MatrixNode(45f, 270f),
-            EMPTY
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            VERTICAL,
-            VERTICAL,
-            EMPTY
+            Empty,
+            Empty,
+            Vertical,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            VERTICAL,
-            VERTICAL,
-            EMPTY
+            Empty,
+            Empty,
+            Vertical,
+            Vertical,
+            Empty
         ), MatrixRow(
-            EMPTY,
-            EMPTY,
-            BOTTOM_LEFT_CORNER,
-            BOTTOM_RIGHT_CORNER,
-            EMPTY
+            Empty,
+            Empty,
+            BottomLeftCorner,
+            BottomRightCorner,
+            Empty
         )
     )
 
-    private val EIGHT = Matrix(
+    private val Eight = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 
-    private val NINE = Matrix(
+    private val Nine = Matrix(
         MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            TopRightCorner
         ), MatrixRow(
-            VERTICAL,
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            TopLeftCorner,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            VERTICAL,
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            Vertical,
+            BottomLeftCorner,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            TOP_RIGHT_CORNER,
-            VERTICAL
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            TopRightCorner,
+            Vertical
         ), MatrixRow(
-            TOP_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER,
-            VERTICAL
+            TopLeftCorner,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner,
+            Vertical
         ), MatrixRow(
-            BOTTOM_LEFT_CORNER,
-            HORIZONTAL,
-            HORIZONTAL,
-            HORIZONTAL,
-            BOTTOM_RIGHT_CORNER
+            BottomLeftCorner,
+            Horizontal,
+            Horizontal,
+            Horizontal,
+            BottomRightCorner
         )
     )
 }

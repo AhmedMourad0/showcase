@@ -47,9 +47,9 @@ class UIMatrixRow(val width: Int) {
 @Stable
 class UIMatrixNode {
     @Stable
-    val firstAngle = Animatable(Digits.EMPTY.firstAngle)
+    val firstAngle = Animatable(Digits.Empty.firstAngle)
     @Stable
-    val secondAngle = Animatable(Digits.EMPTY.secondAngle)
+    val secondAngle = Animatable(Digits.Empty.secondAngle)
 }
 
 suspend fun UIMatrix.animateTo(matrix: Matrix, scope: CoroutineScope) {
