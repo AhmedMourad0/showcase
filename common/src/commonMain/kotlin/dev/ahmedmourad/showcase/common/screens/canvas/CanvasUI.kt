@@ -34,7 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.toSize
 import androidx.compose.ui.zIndex
 import dev.ahmedmourad.showcase.common.screens.canvas.focus.FocusManager
-import dev.ahmedmourad.showcase.common.canvas.models.*
+import dev.ahmedmourad.showcase.common.screens.canvas.models.*
 import dev.ahmedmourad.showcase.common.screens.canvas.undo.CanvasAction
 import dev.ahmedmourad.showcase.common.screens.canvas.undo.UndoManager
 import dev.ahmedmourad.showcase.common.screens.canvas.utils.findQuickActionsLayoutInfo

@@ -6,8 +6,10 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.geometry.center
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
@@ -16,10 +18,8 @@ import dev.ahmedmourad.showcase.common.screens.home.CarouselState
 import dev.ahmedmourad.showcase.common.utils.tickerFlow
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.distinctUntilChanged
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flatMapLatest
+import kotlinx.coroutines.flow.flatMapConcat
 import kotlinx.coroutines.flow.flowOf
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.launchIn
@@ -30,21 +30,26 @@ import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.time.Duration.Companion.seconds
 
-@OptIn(ExperimentalCoroutinesApi::class)
 @Composable
 fun MillionTimesUI(
     state: MillionTimesState,
-    carouselState: CarouselState,
+    carouselState: () -> CarouselState,
     modifier: Modifier = Modifier
 ) {
     Matrix(
         value = state.matrix,
         modifier = modifier.padding(8.dp)
     )
-    LaunchedEffect(carouselState) {
-        snapshotFlow { carouselState }
+    MatrixCounter(state, carouselState)
+}
+
+@OptIn(ExperimentalCoroutinesApi::class)
+@Composable
+private fun MatrixCounter(state: MillionTimesState, carouselState: () -> CarouselState) {
+    LaunchedEffect(carouselState()) {
+        snapshotFlow { carouselState() }
             .distinctUntilChanged()
-            .flatMapLatest {
+            .flatMapConcat {
                 when (it) {
                     CarouselState.Collapsed -> flowOf(createTimeMatrix(null))
                     CarouselState.Expanded -> {
@@ -63,40 +68,48 @@ fun MillionTimesUI(
 }
 
 @Composable
-private fun Matrix(value: UIMatrix, modifier: Modifier = Modifier) {
+private fun Matrix(
+    value: UIMatrix,
+    modifier: Modifier = Modifier,
+    frameColor: Color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f),
+    handColor: Color = MaterialTheme.colorScheme.onBackground
+) {
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
-        Column(modifier.fillMaxWidth()) {
+        Canvas(modifier.fillMaxSize()) {
+            val nodeSize = minOf(size.width / value.width, size.height / value.height)
             value.rows.forEachIndexed { rowIndex, row ->
-                Row(Modifier.fillMaxWidth()) {
-                    row.nodes.forEachIndexed { nodeIndex, node ->
-                        key(rowIndex, nodeIndex) {
-                            MatrixNode(node, Modifier.weight(1f))
-                        }
-                    }
+                row.nodes.forEachIndexed { nodeIndex, node ->
+                    MatrixNode(
+                        node = node,
+                        offset = Offset(
+                            x = nodeIndex * nodeSize,
+                            y = rowIndex * nodeSize
+                        ), size = Size(nodeSize, nodeSize),
+                        frameColor = frameColor,
+                        handColor = handColor
+                    )
                 }
             }
         }
     }
 }
 
-@Composable
-private fun MatrixNode(
+private inline fun DrawScope.MatrixNode(
     node: UIMatrixNode,
-    modifier: Modifier = Modifier,
-    frameColor: Color = MaterialTheme.colorScheme.outline.copy(alpha = 0.4f),
-    handColor: Color = MaterialTheme.colorScheme.onBackground
+    offset: Offset,
+    size: Size,
+    frameColor: Color,
+    handColor: Color
 ) {
-    Canvas(modifier = modifier.aspectRatio(1f)) {
-        val center = size.center
-        val radius = size.minDimension / 2
-        val angle1 = node.firstAngle.value.unaryMinus().rad()
-        val angle2 = node.secondAngle.value.unaryMinus().rad()
-        drawCircle(frameColor, radius, center, style = Stroke(2f))
-        val newX1 = center.x + radius * cos(angle1)
-        val newY1 = center.y + radius * sin(angle1)
-        drawLine(handColor, center, Offset(newX1, newY1), 3f)
-        val newX2 = center.x + radius * cos(angle2)
-        val newY2 = center.y + radius * sin(angle2)
-        drawLine(handColor, center, Offset(newX2, newY2), 3f)
-    }
+    val center = offset + size.center
+    val radius = size.minDimension / 2
+    val angle1 = node.firstAngle.value.unaryMinus().rad()
+    val angle2 = node.secondAngle.value.unaryMinus().rad()
+    drawCircle(frameColor, radius, center, style = Stroke(2f))
+    val newX1 = center.x + radius * cos(angle1)
+    val newY1 = center.y + radius * sin(angle1)
+    drawLine(handColor, center, Offset(newX1, newY1), 3f)
+    val newX2 = center.x + radius * cos(angle2)
+    val newY2 = center.y + radius * sin(angle2)
+    drawLine(handColor, center, Offset(newX2, newY2), 3f)
 }

@@ -1,27 +1,20 @@
 package dev.ahmedmourad.showcase.common.screens.home
 
 import androidx.activity.compose.BackHandler
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Stable
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewmodel.compose.viewModel
 import dev.ahmedmourad.showcase.common.Handle
-import dev.ahmedmourad.showcase.common.screens.canvas.CanvasUI
 import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
-import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
-import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersUI
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
-import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesUI
+import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
 
 @Stable
 class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewModel(Handle(handle))
@@ -34,48 +27,11 @@ class ScreenDatePickersViewModel(handle: SavedStateHandle) : DatePickersViewMode
 
 @Composable
 fun HomeScreen() {
-    val millionTimesVM: ScreenMillionTimesViewModel = viewModel()
     val canvasVM: ScreenCanvasViewModel = viewModel()
     val datePickersVM: ScreenDatePickersViewModel = viewModel()
     var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
-    val screens = remember(millionTimesVM, canvasVM, datePickersVM) {
-        buildList {
-            add(CarouselScreen("Canvas") {
-                CanvasUI(state = canvasVM.state)
-            })
-            add(CarouselScreen("Date Pickers") {
-                val state by datePickersVM.state.collectAsState()
-                DatePickersUI(
-                    state = { state },
-                    onStateChange = { datePickersVM.state.value = it }
-                )
-            })
-            add(CarouselScreen("Million Times") {
-                MillionTimesUI(
-                    state = millionTimesVM.state,
-                    carouselState = carouselState
-                )
-            })
-            add(CarouselScreen("screen #2") {
-                Box(Modifier.fillMaxSize().background(Color.Red))
-            })
-            add(CarouselScreen("screen #3") {
-                Box(Modifier.fillMaxSize().background(Color.Blue))
-            })
-        }
-    }
-    val screens1 = remember {
-        buildList {
-            add(CarouselScreen("screen #1") {
-                Box(Modifier.fillMaxSize().background(Color.Yellow))
-            })
-            add(CarouselScreen("screen #2") {
-                Box(Modifier.fillMaxSize().background(Color.Red))
-            })
-            add(CarouselScreen("screen #3") {
-                Box(Modifier.fillMaxSize().background(Color.Blue))
-            })
-        }
+    val screens = remember(canvasVM, datePickersVM) {
+        commonHomeScreens(canvasVM, datePickersVM)
     }
     ScreensCarousel(
         state = { carouselState },

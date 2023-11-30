@@ -1,7 +1,6 @@
 package dev.ahmedmourad.showcase.common.screens.milliontimes
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.Transition
 import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Stable
 import dev.ahmedmourad.showcase.common.Handle
@@ -10,7 +9,8 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
-import kotlin.coroutines.CoroutineContext
+
+private val EmptyMatrix = createTimeMatrix(null)
 
 @Stable
 open class MillionTimesViewModel(handle: Handle) : ViewModel(handle) {
@@ -19,12 +19,18 @@ open class MillionTimesViewModel(handle: Handle) : ViewModel(handle) {
 
 @Stable
 class MillionTimesState {
+    @Stable
     val start: Instant = Clock.System.now()
-    val matrix = UIMatrix(width = 10, height = 12)
+    @Stable
+    val matrix = UIMatrix(
+        width = EmptyMatrix.rows.first().nodes.size,
+        height = EmptyMatrix.rows.size
+    )
 }
 
 @Stable
 class UIMatrix(val width: Int, val height: Int) {
+    @Stable
     val rows = List(height) {
         UIMatrixRow(width)
     }
@@ -32,6 +38,7 @@ class UIMatrix(val width: Int, val height: Int) {
 
 @Stable
 class UIMatrixRow(val width: Int) {
+    @Stable
     val nodes = List(width) {
         UIMatrixNode()
     }
@@ -39,7 +46,9 @@ class UIMatrixRow(val width: Int) {
 
 @Stable
 class UIMatrixNode {
+    @Stable
     val firstAngle = Animatable(Digits.EMPTY.firstAngle)
+    @Stable
     val secondAngle = Animatable(Digits.EMPTY.secondAngle)
 }
 
