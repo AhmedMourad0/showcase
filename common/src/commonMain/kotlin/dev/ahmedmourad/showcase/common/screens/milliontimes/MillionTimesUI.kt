@@ -51,7 +51,7 @@ private fun MatrixCounter(state: MillionTimesState, carouselState: () -> Carouse
             .distinctUntilChanged()
             .flatMapConcat {
                 when (it) {
-                    CarouselState.Collapsed -> flowOf(createTimeMatrix(null))
+                    CarouselState.Collapsed -> flowOf(EmptyMatrix)
                     CarouselState.Expanded -> {
                         val start = Clock.System.now()
                         tickerFlow(

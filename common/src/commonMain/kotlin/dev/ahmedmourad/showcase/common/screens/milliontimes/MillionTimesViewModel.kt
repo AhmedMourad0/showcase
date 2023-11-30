@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant
 
-private val EmptyMatrix = createTimeMatrix(null)
+val EmptyMatrix = createTimeMatrix(null)
 
 @Stable
 open class MillionTimesViewModel(handle: Handle) : ViewModel(handle) {
