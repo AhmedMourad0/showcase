@@ -15,6 +15,8 @@ import dev.ahmedmourad.showcase.common.Handle
 import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
 import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
+import dev.ahmedmourad.showcase.common.screens.permissions.PermissionsRequesterUI
+import dev.ahmedmourad.showcase.common.screens.permissions.PermissionsRequesterViewModel
 
 @Stable
 class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewModel(Handle(handle))
@@ -25,13 +27,19 @@ class ScreenCanvasViewModel(handle: SavedStateHandle) : CanvasViewModel(Handle(h
 @Stable
 class ScreenDatePickersViewModel(handle: SavedStateHandle) : DatePickersViewModel(Handle(handle))
 
+@Stable
+class ScreenPermissionsRequesterViewModel(handle: SavedStateHandle) : PermissionsRequesterViewModel(Handle(handle))
+
 @Composable
 fun HomeScreen() {
     val canvasVM: ScreenCanvasViewModel = viewModel()
     val datePickersVM: ScreenDatePickersViewModel = viewModel()
+    val permissionsVM: ScreenPermissionsRequesterViewModel = viewModel()
     var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
-    val screens = remember(canvasVM, datePickersVM) {
-        commonHomeScreens(canvasVM, datePickersVM)
+    val screens = remember(canvasVM, datePickersVM, permissionsVM) {
+        commonHomeScreens(canvasVM, datePickersVM) + CarouselScreen("Permissions Requester") {
+            PermissionsRequesterUI(state = permissionsVM.state)
+        }
     }
     ScreensCarousel(
         state = { carouselState },

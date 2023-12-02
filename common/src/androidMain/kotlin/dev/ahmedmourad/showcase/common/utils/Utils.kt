@@ -2,10 +2,8 @@ package dev.ahmedmourad.showcase.common.utils
 
 import android.content.Intent
 import android.database.Cursor
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
-import android.provider.Settings
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.surfaceColorAtElevation
@@ -17,7 +15,6 @@ import androidx.lifecycle.*
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
 import dev.ahmedmourad.showcase.common.Parcelable
 import dev.ahmedmourad.showcase.common.compose.theme.LocalThemeManager
-import dev.ahmedmourad.showcase.common.initializers.appCtx
 
 val LocalActivity = staticCompositionLocalOf<AppCompatActivity> {
     error("CompositionLocal LocalActivity not present")
@@ -41,36 +38,6 @@ fun LifecycleEffect(event: Lifecycle.Event, skip: Int = 1, handler: () -> Unit) 
         onDispose {
             lifecycleOwner.lifecycle.removeObserver(observer)
         }
-    }
-}
-
-fun openAppSettings() {
-    Intent(
-        Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
-        Uri.fromParts("package", appCtx.packageName, null)
-    ).also {
-        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        appCtx.startActivity(it)
-    }
-}
-
-fun openAppOverlaySettings() {
-    Intent(
-        Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
-        Uri.fromParts("package", appCtx.packageName, null)
-    ).also {
-        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        appCtx.startActivity(it)
-    }
-}
-
-fun openWriteAppSettings() {
-    Intent(
-        Settings.ACTION_MANAGE_WRITE_SETTINGS,
-        Uri.fromParts("package", appCtx.packageName, null)
-    ).let {
-        it.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-        appCtx.startActivity(it)
     }
 }
 

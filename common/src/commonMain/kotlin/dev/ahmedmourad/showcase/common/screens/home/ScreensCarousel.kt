@@ -84,12 +84,6 @@ fun commonHomeScreens(
             onStateChange = { datePickersVM.state.value = it }
         )
     })
-    add(CarouselScreen("screen #2") {
-        Box(Modifier.fillMaxSize().background(Color.Red))
-    })
-    add(CarouselScreen("screen #3") {
-        Box(Modifier.fillMaxSize().background(Color.Blue))
-    })
 }
 
 @Composable

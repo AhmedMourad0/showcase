@@ -15,7 +15,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.CalendarMonth
 import androidx.compose.material.icons.rounded.CalendarViewMonth
 import androidx.compose.material.icons.rounded.KeyboardArrowDown
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -55,7 +54,6 @@ fun DatePickersUI(
 ) {
     Column(modifier = modifier
         .fillMaxSize()
-        .background(MaterialTheme.colorScheme.background)
         .verticalScroll(rememberScrollState())
         .padding(bottom = VerticalPadding)
     ) {
