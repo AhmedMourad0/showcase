@@ -20,7 +20,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawing
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.rememberPagerState
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -37,7 +36,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalLayoutDirection
@@ -54,7 +52,8 @@ import dev.ahmedmourad.showcase.common.screens.canvas.CanvasUI
 import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersUI
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
-import kotlin.math.absoluteValue
+import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsUI
+import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewModel
 
 private const val ExpansionDuration = 400
 
@@ -72,8 +71,12 @@ data class CarouselScreen(
 @Stable
 fun commonHomeScreens(
     canvasVM: CanvasViewModel,
-    datePickersVM: DatePickersViewModel
+    datePickersVM: DatePickersViewModel,
+    bungeeGumVM: BungeeGumBarsViewModel
 ): List<CarouselScreen> = buildList {
+    add(CarouselScreen("Bungee Gum Bars") {
+        BungeeGumBarsUI(state = bungeeGumVM.state)
+    })
     add(CarouselScreen("Canvas") {
         CanvasUI(state = canvasVM.state)
     })

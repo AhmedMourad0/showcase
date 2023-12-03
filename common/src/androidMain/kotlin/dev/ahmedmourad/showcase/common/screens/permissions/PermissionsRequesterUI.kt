@@ -21,6 +21,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import dev.ahmedmourad.showcase.common.compose.components.LabelVerticalPadding
 import dev.ahmedmourad.showcase.common.compose.theme.DisabledTextOpacity
 import dev.ahmedmourad.showcase.common.compose.theme.HorizontalPadding
 import dev.ahmedmourad.showcase.common.compose.theme.VerticalPadding
@@ -41,12 +42,12 @@ fun PermissionsRequesterUI(
         .verticalScroll(rememberScrollState())
         .padding(bottom = VerticalPadding, start = HorizontalPadding, end = HorizontalPadding)
     ) {
+        Spacer(Modifier.height(LabelVerticalPadding))
 //        Label(
 //            text = "Illustrating the usages of my compose-based permissions requester (check the code):",
 //            contentPadding = PaddingValues(bottom = LabelVerticalPadding),
 //            modifier = Modifier.padding(horizontal = HorizontalPadding)
 //        )
-        val activity = LocalActivity.current
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             PermissionRequesterText("Single Permission", Modifier.weight(1f))
             Spacer(Modifier.width(4.dp))

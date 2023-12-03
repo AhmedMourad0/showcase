@@ -45,6 +45,7 @@ kotlin {
                 api("dev.icerock.moko:resources:0.23.0")
                 api("dev.icerock.moko:resources-compose:0.23.0")
                 api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.1")
+                api("co.touchlab:kermit:2.0.2")
             }
         }
         val commonTest by getting {

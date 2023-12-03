@@ -11,13 +11,15 @@ import dev.ahmedmourad.showcase.common.navigation.Destination
 import dev.ahmedmourad.showcase.common.navigation.viewModel
 import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
+import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewModel
 
 fun HomeScreen() = Destination<Unit>(title = null) {
     val canvasVM = viewModel { CanvasViewModel(Handle.Default) }
     val datePickersVM = viewModel { DatePickersViewModel(Handle.Default) }
+    val bungeeGumVM = viewModel { BungeeGumBarsViewModel(Handle.Default) }
     var carouselState by remember { mutableStateOf(CarouselState.Expanded) }
-    val screens = remember(canvasVM, datePickersVM) {
-        commonHomeScreens(canvasVM, datePickersVM)
+    val screens = remember(canvasVM, datePickersVM, bungeeGumVM) {
+        commonHomeScreens(canvasVM, datePickersVM, bungeeGumVM)
     }
     ScreensCarousel(
         state = { carouselState },

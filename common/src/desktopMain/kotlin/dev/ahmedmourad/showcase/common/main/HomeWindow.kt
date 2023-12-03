@@ -16,6 +16,7 @@ import dev.ahmedmourad.showcase.common.Handle
 import dev.ahmedmourad.showcase.common.RR
 import dev.ahmedmourad.showcase.common.screens.canvas.CanvasViewModel
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
+import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewModel
 import dev.ahmedmourad.showcase.common.screens.home.CarouselState
 import dev.ahmedmourad.showcase.common.screens.home.ScreensCarousel
 import dev.ahmedmourad.showcase.common.screens.home.commonHomeScreens
@@ -33,9 +34,10 @@ fun HomeWindow(onCloseRequest: () -> Unit) {
     ) {
         val canvasVM = remember { CanvasViewModel(Handle.Default) }
         val datePickersVM = remember { DatePickersViewModel(Handle.Default) }
+        val bungeeGumVM = remember { BungeeGumBarsViewModel(Handle.Default) }
         var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
-        val screens = remember(canvasVM, datePickersVM) {
-            commonHomeScreens(canvasVM, datePickersVM)
+        val screens = remember(canvasVM, datePickersVM, bungeeGumVM) {
+            commonHomeScreens(canvasVM, datePickersVM, bungeeGumVM)
         }
         ScreensCarousel(
             state = { carouselState },
