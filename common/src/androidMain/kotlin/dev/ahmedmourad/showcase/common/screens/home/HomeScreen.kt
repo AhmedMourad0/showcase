@@ -18,6 +18,7 @@ import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewMo
 import dev.ahmedmourad.showcase.common.screens.milliontimes.MillionTimesViewModel
 import dev.ahmedmourad.showcase.common.screens.permissions.PermissionsRequesterUI
 import dev.ahmedmourad.showcase.common.screens.permissions.PermissionsRequesterViewModel
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSelectorViewModel
 
 @Stable
 class ScreenMillionTimesViewModel(handle: SavedStateHandle) : MillionTimesViewModel(Handle(handle))
@@ -34,18 +35,23 @@ class ScreenBungeeGumBarsViewModel(handle: SavedStateHandle) : BungeeGumBarsView
 @Stable
 class ScreenPermissionsRequesterViewModel(handle: SavedStateHandle) : PermissionsRequesterViewModel(Handle(handle))
 
+@Stable
+class ScreenThemeSelectorViewModel(handle: SavedStateHandle) : ThemeSelectorViewModel(Handle(handle))
+
 @Composable
 fun HomeScreen() {
     val canvasVM: ScreenCanvasViewModel = viewModel()
     val datePickersVM: ScreenDatePickersViewModel = viewModel()
     val bungeeGumVM: ScreenBungeeGumBarsViewModel = viewModel()
     val permissionsVM: ScreenPermissionsRequesterViewModel = viewModel()
+    val themesVM: ScreenThemeSelectorViewModel = viewModel()
     var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
-    val screens = remember(canvasVM, datePickersVM, bungeeGumVM, permissionsVM) {
+    val screens = remember(canvasVM, datePickersVM, bungeeGumVM, permissionsVM, themesVM) {
         commonHomeScreens(
             canvasVM,
             datePickersVM,
-            bungeeGumVM
+            bungeeGumVM,
+            themesVM
         ) + CarouselScreen("Permissions Requester") {
             PermissionsRequesterUI(state = permissionsVM.state)
         }

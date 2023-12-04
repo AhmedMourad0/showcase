@@ -1,5 +1,7 @@
 package dev.ahmedmourad.showcase.common
 
+import dev.ahmedmourad.showcase.common.screens.themeselector.CommonSchemes
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSchemes
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.channels.awaitClose
 import kotlinx.coroutines.flow.Flow
@@ -8,8 +10,10 @@ import kotlinx.coroutines.flow.mapLatest
 import platform.Foundation.NSNotificationCenter
 import platform.Foundation.NSUserDefaults
 import platform.Foundation.NSUserDefaultsDidChangeNotification
+import platform.Foundation.setValue
 
 private const val IsInDarkModeKey = "is_in_dark_mode"
+private const val SelectedThemeKey = "selected_theme"
 
 @OptIn(ExperimentalCoroutinesApi::class)
 actual class PreferenceManager {
@@ -36,6 +40,23 @@ actual class PreferenceManager {
                 otherwise = otherwise,
                 get = defaults::boolForKey
             )
+        }
+    }
+
+    actual suspend fun selectTheme(value: ThemeSchemes) {
+        defaults.setValue(value = value.id, forUndefinedKey = SelectedThemeKey)
+    }
+
+    actual fun selectedTheme(otherwise: () -> ThemeSchemes): Flow<ThemeSchemes> {
+        return defaults.asFlow().mapLatest {
+            defaults.getOrDefault(
+                key = SelectedThemeKey,
+                otherwise = otherwise
+            ) { key ->
+                CommonSchemes.firstOrNull {
+                    it.id == defaults.stringForKey(key)
+                } ?: otherwise()
+            }
         }
     }
 }

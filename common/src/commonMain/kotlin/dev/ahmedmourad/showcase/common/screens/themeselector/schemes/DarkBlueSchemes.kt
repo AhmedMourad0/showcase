@@ -1,9 +1,11 @@
-package dev.ahmedmourad.showcase.common.compose.theme.schemes
+package dev.ahmedmourad.showcase.common.screens.themeselector.schemes
+
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSchemes
 
-val TestLightScheme = lightColorScheme(
+private val DarkBlueLightScheme = lightColorScheme(
     primary = Color(0xFF6750A4),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFFEADDFF),
@@ -30,13 +32,12 @@ val TestLightScheme = lightColorScheme(
     inverseSurface = Color(0xFF313033),
     inverseOnSurface = Color(0xFFF4EFF4),
     inversePrimary = Color(0xFFD0BCFF),
-//    shadow = Color(0xFF000000),
     surfaceTint = Color(0xFF6750A4),
     outlineVariant = Color(0xFFCAC4D0),
     scrim = Color(0xFF000000)
 )
 
-val TestDarkScheme = darkColorScheme(
+private val DarkBlueDarkScheme = darkColorScheme(
     primary = Color(0xFFD0BCFF),
     onPrimary = Color(0xFF381E72),
     primaryContainer = Color(0xFF4F378B),
@@ -63,11 +64,16 @@ val TestDarkScheme = darkColorScheme(
     inverseSurface = Color(0xFFE6E1E5),
     inverseOnSurface = Color(0xFF313033),
     inversePrimary = Color(0xFF6750A4),
-//    shadow = Color(0xFF000000),
     surfaceTint = Color(0xFFD0BCFF),
     outlineVariant = Color(0xFF49454F),
     scrim = Color(0xFF000000)
 )
 
+val DarkBlueSchemes = ThemeSchemes(
+    id = "dark_blue",
+    name = "Dark Blue",
+    light = DarkBlueLightScheme,
+    dark = DarkBlueDarkScheme
+)
 
-val TestSeed = Color(0xFF6750A4)
+//Seed = Color(0xFF6750A4)

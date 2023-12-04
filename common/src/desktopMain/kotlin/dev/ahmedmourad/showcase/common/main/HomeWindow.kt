@@ -20,6 +20,7 @@ import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewMo
 import dev.ahmedmourad.showcase.common.screens.home.CarouselState
 import dev.ahmedmourad.showcase.common.screens.home.ScreensCarousel
 import dev.ahmedmourad.showcase.common.screens.home.commonHomeScreens
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSelectorViewModel
 import dev.icerock.moko.resources.compose.stringResource
 
 @Composable
@@ -35,9 +36,10 @@ fun HomeWindow(onCloseRequest: () -> Unit) {
         val canvasVM = remember { CanvasViewModel(Handle.Default) }
         val datePickersVM = remember { DatePickersViewModel(Handle.Default) }
         val bungeeGumVM = remember { BungeeGumBarsViewModel(Handle.Default) }
+        val themesVM = remember { ThemeSelectorViewModel(Handle.Default) }
         var carouselState by remember { mutableStateOf(CarouselState.Collapsed) }
-        val screens = remember(canvasVM, datePickersVM, bungeeGumVM) {
-            commonHomeScreens(canvasVM, datePickersVM, bungeeGumVM)
+        val screens = remember(canvasVM, datePickersVM, bungeeGumVM, themesVM) {
+            commonHomeScreens(canvasVM, datePickersVM, bungeeGumVM, themesVM)
         }
         ScreensCarousel(
             state = { carouselState },

@@ -54,6 +54,8 @@ import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersUI
 import dev.ahmedmourad.showcase.common.screens.datepickers.DatePickersViewModel
 import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsUI
 import dev.ahmedmourad.showcase.common.screens.bungeegumbars.BungeeGumBarsViewModel
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSelectorUI
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSelectorViewModel
 
 private const val ExpansionDuration = 400
 
@@ -72,10 +74,11 @@ data class CarouselScreen(
 fun commonHomeScreens(
     canvasVM: CanvasViewModel,
     datePickersVM: DatePickersViewModel,
-    bungeeGumVM: BungeeGumBarsViewModel
+    bungeeGumVM: BungeeGumBarsViewModel,
+    themesVM: ThemeSelectorViewModel
 ): List<CarouselScreen> = buildList {
-    add(CarouselScreen("Bungee Gum Bars") {
-        BungeeGumBarsUI(state = bungeeGumVM.state)
+    add(CarouselScreen("Theme Selector") {
+        ThemeSelectorUI(state = themesVM.state)
     })
     add(CarouselScreen("Canvas") {
         CanvasUI(state = canvasVM.state)
@@ -86,6 +89,9 @@ fun commonHomeScreens(
             state = { state },
             onStateChange = { datePickersVM.state.value = it }
         )
+    })
+    add(CarouselScreen("Bungee Gum Bars") {
+        BungeeGumBarsUI(state = bungeeGumVM.state)
     })
 }
 

@@ -1,10 +1,11 @@
-package dev.ahmedmourad.showcase.common.compose.theme.schemes
+package dev.ahmedmourad.showcase.common.screens.themeselector.schemes
 
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
+import dev.ahmedmourad.showcase.common.screens.themeselector.ThemeSchemes
 
-val DefaultLightScheme = lightColorScheme(
+val OrangeBrownLightScheme = lightColorScheme(
     primary = Color(0xFF805600),
     onPrimary = Color(0xFFFFFFFF),
     primaryContainer = Color(0xFFFFDDB0),
@@ -31,13 +32,12 @@ val DefaultLightScheme = lightColorScheme(
     inverseOnSurface = Color(0xFFF9EFE7),
     inverseSurface = Color(0xFF34302A),
     inversePrimary = Color(0xFFFFBA46),
-//    shadow = Color(0xFF000000),
     surfaceTint = Color(0xFF805600),
     outlineVariant = Color(0xFFD2C4B4),
     scrim = Color(0xFF000000)
 )
 
-val DefaultDarkScheme = darkColorScheme(
+val OrangeBrownDarkScheme = darkColorScheme(
     primary = Color(0xFFFFBA46),
     onPrimary = Color(0xFF442C00),
     primaryContainer = Color(0xFF614000),
@@ -64,10 +64,16 @@ val DefaultDarkScheme = darkColorScheme(
     inverseOnSurface = Color(0xFF1F1B16),
     inverseSurface = Color(0xFFEAE1D9),
     inversePrimary = Color(0xFF805600),
-//    shadow = Color(0xFF000000),
     surfaceTint = Color(0xFFFFBA46),
     outlineVariant = Color(0xFF4F4539),
     scrim = Color(0xFF000000)
 )
 
-val DefaultSeed = Color(0xFFF3AD33)
+val OrangeBrownSchemes = ThemeSchemes(
+    id = "orange_brown",
+    name = "Orange Brown",
+    light = OrangeBrownLightScheme,
+    dark = OrangeBrownDarkScheme
+)
+
+//Seed = Color(0xFFF3AD33)
