@@ -136,8 +136,8 @@ A collection of cool multiplatform components that are either hidden inside one 
 - Showcases a custom customizable Compose permissions requester.
 - Supports requesting a single or multiple permissions at once.
 - By default, once the requester enters composition, it checks the permission status:
-  - If the permission was granted, nothing happens.
   - If the permission was never requested, the permissions is requested immediately.
+  - If the permission was granted, nothing happens.
   - If the permission was denied once, the rationale is shown with an option to request the permission again.
   - if the permission was denied permanently, a rationale is shown with the option to go to settings to grant it.
 - Updated the state of each permission instantly when the user returns to the app from settings.
