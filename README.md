@@ -1,16 +1,51 @@
-Showcase ![](https://img.shields.io/badge/Kotlin%20Multiplatform-blue) ![](https://img.shields.io/badge/Compose%20Multiplatform-green) ![](https://img.shields.io/badge/Android-green) ![](https://img.shields.io/badge/iOS-black) ![](https://img.shields.io/badge/Desktop-red)
+Showcase ![](https://img.shields.io/badge/Language-Kotlin%20Multiplatform-blue) ![](https://img.shields.io/badge/UI-Compose%20Multiplatform-green) ![](https://img.shields.io/badge/Platform-Android-green) ![](https://img.shields.io/badge/Platform-iOS-black) ![](https://img.shields.io/badge/Platform-Desktop-red)
 ===================================================================================
 A collection of cool multiplatform components that are either hidden inside one of my projects or didn't manage to make it to one.
 
-## Date Pickers ![](https://img.shields.io/badge/Compose%20Multiplatform-green) ![](https://img.shields.io/badge/Android-green) ![](https://img.shields.io/badge/iOS-black) ![](https://img.shields.io/badge/Desktop-red)
-Custom Compose Multiplatform Date Picker, Days of Month Picker, and Days of Year Picker.
-Package: `commonMain/dev.ahmedmourad.showcase.common.screens.datepickers`
+## Date Pickers ![](https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.datepickers-white?link=https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/datepickers)
+![](https://img.shields.io/badge/Platform-Android-green) ![](https://img.shields.io/badge/Platform-iOS-black) ![](https://img.shields.io/badge/Platform-Desktop-red)
 
-- Date Picker:
-![Date Picker](/screenshots/datepicker_daysmode.jpg) ![Date Picker - Months Mode](/screenshots/datepicker_monthsmode.jpg) ![Date Picker - Years Mode](/screenshots/datepicker_yearsmode.jpg)
+Showcases the following custom Compose Multiplatform components: Date Picker, Days of Month Picker, and Days of Year Picker.
 
-- Days of Year Picker:
-![Days of Year Picker](/screenshots/daysofyearpicker_daysmode.jpg) ![Days of Year Picker - Months Mode](/screenshots/daysofyearpicker_monthsmode.jpg) ![Days of Year Picker - Fallback](/screenshots/daysofyearpicker_fallback.jpg)
+### Single Date Picker
+Uses a custom compose layout `ConsiderateBox` with custom Parent Data Modifiers `considerWidth`, `considerHeight`, and `showIf`.
 
-- Days of Month Picker:
-![Days of Month Picker](/screenshots/daysofmonthpicker.jpg) ![Days of Month Picker - Fallback](/screenshots/daysofmonthpicker_fallback.jpg)
+![](https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.compose.layouts.ConsiderateBox-white?link=https://github.com/AhmedMourad0/showcase/blob/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/compose/layouts/ConsiderateBox.kt)
+<table>
+  <tr>
+     <td align="center">Days View</td>
+     <td align="center">Months View</td>
+     <td align="center">Years View</td>
+  </tr>
+  <tr>
+    <td><img src="/screenshots/datepicker_daysmode.jpg" width=270></td>
+    <td><img src="/screenshots/datepicker_monthsmode.jpg" width=270></td>
+    <td><img src="/screenshots/datepicker_yearsmode.jpg" width=270></td>
+  </tr>
+</table>
+
+### Days of Year Picker
+<table>
+  <tr>
+     <td align="center">Days View</td>
+     <td align="center">Months View</td>
+     <td align="center">Fallback</td>
+  </tr>
+  <tr>
+    <td><img src="/screenshots/daysofyearpicker_daysmode.jpg" width=270></td>
+    <td><img src="/screenshots/daysofyearpicker_monthsmode.jpg" width=270></td>
+    <td><img src="/screenshots/daysofyearpicker_fallback.jpg" width=270></td>
+  </tr>
+</table>
+
+### Days of Month Picker
+<table>
+  <tr>
+     <td align="center">Days View</td>
+     <td align="center">Fallback</td>
+  </tr>
+  <tr>
+    <td><img src="/screenshots/daysofmonthpicker.jpg" width=270></td>
+    <td><img src="/screenshots/daysofmonthpicker_fallback.jpg" width=270></td>
+  </tr>
+</table>
