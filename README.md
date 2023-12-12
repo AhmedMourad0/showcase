@@ -15,11 +15,6 @@ A collection of cool multiplatform components that are either hidden inside one 
 - Channels rotation and zooming applied to the canvas itself to the last focused item, which facilitates manipulating tiny items.
 - Allows clicking through large items to focus items hidden beneath them.
 
-## Date Pickers <a href="https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/datepickers"><img src="https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.datepickers-white" /> </a> <img src="https://img.shields.io/badge/Platform-Android-green"/> <img src="https://img.shields.io/badge/Platform-iOS-black"/> <img src="https://img.shields.io/badge/Platform-Desktop-red"/>
-
-- Showcases the following custom Compose Multiplatform components: Date Picker, Days of Month Picker, and Days of Year Picker.
-- Uses a custom compose layout [`ConsiderateBox`](https://github.com/AhmedMourad0/showcase/blob/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/compose/layouts/ConsiderateBox.kt) with custom Parent Data Modifiers `considerWidth`, `considerHeight`, and `showIf`.
-
 <table>
   <tr>
      <td align="center">Canvas #1</td>
@@ -30,6 +25,11 @@ A collection of cool multiplatform components that are either hidden inside one 
     <td><img src="/screenshots/canvas2.jpg" width=270></td>
   </tr>
 </table>
+
+## Date Pickers <a href="https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/datepickers"><img src="https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.datepickers-white" /> </a> <img src="https://img.shields.io/badge/Platform-Android-green"/> <img src="https://img.shields.io/badge/Platform-iOS-black"/> <img src="https://img.shields.io/badge/Platform-Desktop-red"/>
+
+- Showcases the following custom Compose Multiplatform components: Date Picker, Days of Month Picker, and Days of Year Picker.
+- Uses a custom compose layout [`ConsiderateBox`](https://github.com/AhmedMourad0/showcase/blob/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/compose/layouts/ConsiderateBox.kt) with custom Parent Data Modifiers `considerWidth`, `considerHeight`, and `showIf`.
 
 ### Single Date Picker
 
