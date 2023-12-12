@@ -77,9 +77,6 @@ fun commonHomeScreens(
     bungeeGumVM: BungeeGumBarsViewModel,
     themesVM: ThemeSelectorViewModel
 ): List<CarouselScreen> = buildList {
-    add(CarouselScreen("Theme Selector") {
-        ThemeSelectorUI(state = themesVM.state)
-    })
     add(CarouselScreen("Canvas") {
         CanvasUI(state = canvasVM.state)
     })
@@ -92,6 +89,9 @@ fun commonHomeScreens(
     })
     add(CarouselScreen("Bungee Gum Bars") {
         BungeeGumBarsUI(state = bungeeGumVM.state)
+    })
+    add(CarouselScreen("Theme Selector") {
+        ThemeSelectorUI(state = themesVM.state)
     })
 }
 
