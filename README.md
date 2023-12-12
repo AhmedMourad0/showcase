@@ -13,6 +13,7 @@ A collection of cool multiplatform components that are either hidden inside one 
 - Separates dragging from rotations and zooming for better user experience.
 - Includes various interchangeable implementations of the focus manager used to determine which item has focus and when it will lose it.
 - Channels rotation and zooming applied to the canvas itself to the last focused item, which facilitates manipulating tiny items.
+- Allows bringing items to front by clicking on them.
 - Allows clicking through large items to focus items hidden beneath them.
 
 <table>
