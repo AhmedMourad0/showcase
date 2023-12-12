@@ -1,8 +1,9 @@
-Showcase ![](https://img.shields.io/badge/Language-Kotlin%20Multiplatform-blue) ![](https://img.shields.io/badge/UI-Compose%20Multiplatform-green) ![](https://img.shields.io/badge/Platform-Android-green) ![](https://img.shields.io/badge/Platform-iOS-black) ![](https://img.shields.io/badge/Platform-Desktop-red)
+Showcase
+![](https://img.shields.io/badge/Language-Kotlin%20Multiplatform-blue) ![](https://img.shields.io/badge/UI-Compose%20Multiplatform-blue) ![](https://img.shields.io/badge/Platform-Android-green) ![](https://img.shields.io/badge/Platform-iOS-black) ![](https://img.shields.io/badge/Platform-Desktop-red)
 ===================================================================================
 A collection of cool multiplatform components that are either hidden inside one of my projects or didn't manage to make it to one.
 
-## Date Pickers ![](https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.datepickers-white?link=https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/datepickers)
+## Date Pickers <a href="https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/datepickers"><img src="https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.datepickers-white" /> </a>
 ![](https://img.shields.io/badge/Platform-Android-green) ![](https://img.shields.io/badge/Platform-iOS-black) ![](https://img.shields.io/badge/Platform-Desktop-red)
 
 Showcases the following custom Compose Multiplatform components: Date Picker, Days of Month Picker, and Days of Year Picker.
@@ -10,7 +11,7 @@ Showcases the following custom Compose Multiplatform components: Date Picker, Da
 ### Single Date Picker
 Uses a custom compose layout `ConsiderateBox` with custom Parent Data Modifiers `considerWidth`, `considerHeight`, and `showIf`.
 
-![](https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.compose.layouts.ConsiderateBox-white?link=https://github.com/AhmedMourad0/showcase/blob/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/compose/layouts/ConsiderateBox.kt)
+<a href="https://github.com/AhmedMourad0/showcase/blob/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/compose/layouts/ConsiderateBox.kt"><img src="https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.compose.layouts.ConsiderateBox-white" /></a>
 <table>
   <tr>
      <td align="center">Days View</td>
