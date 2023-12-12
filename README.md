@@ -4,7 +4,7 @@ Showcase
 A collection of cool multiplatform components that are either hidden inside one of my projects or didn't manage to make it to one, packed into a Material You and Light/Dark mode supporting app.
 
 > [!WARNING]
-> The app might spontaneously crash on some Android versions, this is due to a [current bug](https://issuetracker.google.com/issues/308501489) with Compose that is yet to be fixed.
+> Due to a [current bug](https://issuetracker.google.com/issues/308501489) with Compose that is yet to be fixed, the app might spontaneously crash sometimes without direct user intervention. 
 
 ## Canvas <a href="https://github.com/AhmedMourad0/showcase/tree/master/common/src/commonMain/kotlin/dev/ahmedmourad/showcase/common/screens/canvas"><img src="https://img.shields.io/badge/commonMain-dev.ahmedmourad.showcase.common.screens.canvas-white" /> </a> <img src="https://img.shields.io/badge/Platform-Android-green"/> <img src="https://img.shields.io/badge/Platform-iOS-black"/> <img src="https://img.shields.io/badge/Platform-Desktop-red"/>
 
