@@ -1,5 +1,5 @@
 Showcase
-<img src="https://img.shields.io/badge/Language-Kotlin%20Multiplatform-blue"/> <img src="https://img.shields.io/badge/UI-Compose%20Multiplatform-blue"/> <img src="https://img.shields.io/badge/Platform-Android-green"/> <img src="https://img.shields.io/badge/Platform-iOS-black"/> <img src="https://img.shields.io/badge/Platform-Desktop-red"/>
+<img src="https://img.shields.io/badge/Language-Kotlin-blue"/> <img src="https://img.shields.io/badge/UI-Compose%20Multiplatform-blue"/> <img src="https://img.shields.io/badge/Platform-Android-green"/> <img src="https://img.shields.io/badge/Platform-iOS-black"/> <img src="https://img.shields.io/badge/Platform-Desktop-red"/>
 ===================================================================================
 A collection of cool multiplatform components that are either hidden inside one of my projects or didn't manage to make it to one, packed into a Material You and Light/Dark mode supporting app.
 
