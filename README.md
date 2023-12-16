@@ -159,3 +159,13 @@ A collection of cool multiplatform components that are either hidden inside one 
     <td><img src="/screenshots/permissions2.jpg" width=270></td>
   </tr>
 </table>
+
+## Download
+
+Due to the nature of the app, it cannot be deployed to the app/play store, you can either pull the project locally and build it yourself (release build variant) or use the download link below:
+
+[Download for Android](https://apkfab.com/ahmed-mourad/dev.ahmedmourad.showcase.android/apk?h=667346ea46bbdbe5f294b10b1d557d2a9a358cde8b66caf533de07d263a1a835)
+
+Download for iOS (coming soon)
+
+Download for Desktop (coming soon)
