@@ -43,7 +43,7 @@ android {
         applicationId = "dev.ahmedmourad.showcase.android"
         minSdk = 23
         targetSdk = 34
-        versionCode = 21
+        versionCode = 1
         versionName = "1.0.0"
         multiDexEnabled = true
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
